@@ -1,0 +1,6 @@
+@eFaktureManagement_HostAddress = http://localhost:5140
+
+GET {{eFaktureManagement_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
