@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/eFaktureManagement/.vs/eFaktureManagement/FileContentIndex/e57a01db-8170-4f1e-abf5-c3eea042e3c4.vsidx
+*.vsidx
+/eFaktureManagement/.vs/eFaktureManagement/config/applicationhost.config
