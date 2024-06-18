@@ -3,6 +3,5 @@
 ################################################################################
 
 /eFaktureManagement/.vs/*/
-bin 
-obj
-packages
+/eFaktureManagement/eFaktureManagement/bin/*/
+/eFaktureManagement/eFaktureManagement/obj/*/
