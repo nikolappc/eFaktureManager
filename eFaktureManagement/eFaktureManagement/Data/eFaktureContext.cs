@@ -5,7 +5,7 @@ namespace eFaktureManagement.Data
 {
     public class eFaktureContext : IdentityDbContext
     {
-        public eFaktureContext(DbContextOptions options) : base(options)
+        public eFaktureContext(DbContextOptions<eFaktureContext> options) : base(options)
         {
         }
     }
