@@ -1,4 +1,4 @@
-﻿namespace eFaktureManagement.Models.ApiModels
+﻿namespace eFaktureManagement.ApiModels.Purchase
 {
     public enum PurchaseInvoiceStatus
     {

@@ -1,11 +1,11 @@
-﻿namespace eFaktureManagement.Models.ApiModels
+﻿namespace eFaktureManagement.ApiModels.Purchase
 {
-    public class SaleInvoiceChange
+    public class PurchaseInvoiceChange
     {
         public int eventId { get; set; }
         public string date { get; set; }
         public PurchaseInvoiceStatus newInvoiceStatus { get; set; }
-        public int salesInvoiceId { get; set; }
+        public int purchaseInvoiceId { get; set; }
         public string comment { get; set; }
         public string cirInvoiceId { get; set; }
         public string subscriptionKey { get; set; }
