@@ -1,0 +1,13 @@
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\bin\Debug\net8.0\eFaktureModel.deps.json
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\bin\Debug\net8.0\eFaktureModel.dll
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\bin\Debug\net8.0\eFaktureModel.pdb
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\eFaktureModel.csproj.AssemblyReference.cache
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\eFaktureModel.GeneratedMSBuildEditorConfig.editorconfig
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\eFaktureModel.AssemblyInfoInputs.cache
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\eFaktureModel.AssemblyInfo.cs
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\eFaktureModel.csproj.CoreCompileInputs.cache
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\eFaktureModel.sourcelink.json
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\eFaktureModel.dll
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\refint\eFaktureModel.dll
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\eFaktureModel.pdb
+X:\Projects\eFaktureManagement\eFaktureManager\eFaktureManagement\eFaktureModel\obj\Debug\net8.0\ref\eFaktureModel.dll

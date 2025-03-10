@@ -17,10 +17,10 @@ using System.ComponentModel.DataAnnotations;
 using IO.Swagger.Attributes;
 
 using Microsoft.AspNetCore.Authorization;
-using IO.Swagger.Models;
+using eFaktureModel.Api.Models;
 
 namespace IO.Swagger.Controllers
-{ 
+{
     /// <summary>
     /// 
     /// </summary>
