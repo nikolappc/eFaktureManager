@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.34928.147
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFaktureManagement", "eFaktureManagement\eFaktureManagement.csproj", "{58BAAEED-670B-41C5-AB81-8D7EC634D5B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureManagement", "eFaktureManagement\eFaktureManagement.csproj", "{58BAAEED-670B-41C5-AB81-8D7EC634D5B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureApiDemo", "..\efaktureApiDemo\src\IO.Swagger\eFaktureApiDemo.csproj", "{9721A876-3229-4EE7-BE99-8A9F145E3001}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{58BAAEED-670B-41C5-AB81-8D7EC634D5B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58BAAEED-670B-41C5-AB81-8D7EC634D5B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58BAAEED-670B-41C5-AB81-8D7EC634D5B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9721A876-3229-4EE7-BE99-8A9F145E3001}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9721A876-3229-4EE7-BE99-8A9F145E3001}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9721A876-3229-4EE7-BE99-8A9F145E3001}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9721A876-3229-4EE7-BE99-8A9F145E3001}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,79 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "X:\\Projects\\efakture_api_client\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{530A712D-9D42-45B8-B6ED-50E96326108C}|src\\IO.Swagger\\IO.Swagger.csproj|x:\\projects\\efakture_api_client\\src\\io.swagger\\filters\\generatepathparamsvalidationfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530A712D-9D42-45B8-B6ED-50E96326108C}|src\\IO.Swagger\\IO.Swagger.csproj|solutionrelative:src\\io.swagger\\filters\\generatepathparamsvalidationfilter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530A712D-9D42-45B8-B6ED-50E96326108C}|src\\IO.Swagger\\IO.Swagger.csproj|x:\\projects\\efakture_api_client\\src\\io.swagger\\models\\cancellationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530A712D-9D42-45B8-B6ED-50E96326108C}|src\\IO.Swagger\\IO.Swagger.csproj|solutionrelative:src\\io.swagger\\models\\cancellationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{530A712D-9D42-45B8-B6ED-50E96326108C}|src\\IO.Swagger\\IO.Swagger.csproj|x:\\projects\\efakture_api_client\\src\\io.swagger\\controllers\\publicapiapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{530A712D-9D42-45B8-B6ED-50E96326108C}|src\\IO.Swagger\\IO.Swagger.csproj|solutionrelative:src\\io.swagger\\controllers\\publicapiapi.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GeneratePathParamsValidationFilter.cs",
+              "DocumentMoniker": "X:\\Projects\\efakture_api_client\\src\\IO.Swagger\\Filters\\GeneratePathParamsValidationFilter.cs",
+              "RelativeDocumentMoniker": "src\\IO.Swagger\\Filters\\GeneratePathParamsValidationFilter.cs",
+              "ToolTip": "X:\\Projects\\efakture_api_client\\src\\IO.Swagger\\Filters\\GeneratePathParamsValidationFilter.cs",
+              "RelativeToolTip": "src\\IO.Swagger\\Filters\\GeneratePathParamsValidationFilter.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T17:56:08.456Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "CancellationDto.cs",
+              "DocumentMoniker": "X:\\Projects\\efakture_api_client\\src\\IO.Swagger\\Models\\CancellationDto.cs",
+              "RelativeDocumentMoniker": "src\\IO.Swagger\\Models\\CancellationDto.cs",
+              "ToolTip": "X:\\Projects\\efakture_api_client\\src\\IO.Swagger\\Models\\CancellationDto.cs",
+              "RelativeToolTip": "src\\IO.Swagger\\Models\\CancellationDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T17:55:59.267Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PublicApiApi.cs",
+              "DocumentMoniker": "X:\\Projects\\efakture_api_client\\src\\IO.Swagger\\Controllers\\PublicApiApi.cs",
+              "RelativeDocumentMoniker": "src\\IO.Swagger\\Controllers\\PublicApiApi.cs",
+              "ToolTip": "X:\\Projects\\efakture_api_client\\src\\IO.Swagger\\Controllers\\PublicApiApi.cs",
+              "RelativeToolTip": "src\\IO.Swagger\\Controllers\\PublicApiApi.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-10T17:55:50.639Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
