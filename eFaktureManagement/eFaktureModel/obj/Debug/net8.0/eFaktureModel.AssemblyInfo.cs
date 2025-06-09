@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eFaktureModel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+669d428a6bd4a8b9713ce92e31e9d90385640805")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+83a4b458484cd1cd57df2c3b0971d0d808a90229")]
 [assembly: System.Reflection.AssemblyProductAttribute("eFaktureModel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eFaktureModel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
