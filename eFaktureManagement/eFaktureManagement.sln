@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFaktureSync", "eFaktureSyn
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFaktureModel", "eFaktureModel\eFaktureModel.csproj", "{EC2751F4-365D-4F98-B412-D80077653C30}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFaktureManagementBase", "eFaktureManagementBase\eFaktureManagementBase.csproj", "{3DE4A096-A246-498F-A194-53749EEBAC0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{EC2751F4-365D-4F98-B412-D80077653C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC2751F4-365D-4F98-B412-D80077653C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC2751F4-365D-4F98-B412-D80077653C30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,22 +2,8 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/eFaktureManagement/**/bin/
+
+/eFaktureManagement/**/obj/
+
 /eFaktureManagement/.vs/*/
-/eFaktureManagement/eFaktureManagement/bin/*/
-/eFaktureManagement/eFaktureManagement/obj/*/
-/eFaktureManagement/eFaktureManagement/bin/
-/eFaktureManagement/eFaktureManagement/obj/
-/eFaktureManagement/eFaktureModel/bin/*/
-/eFaktureManagement/eFaktureModel/obj/*/
-
-/eFaktureManagement/eFaktureModel/bin/
-/eFaktureManagement/eFaktureModel/obj/
-/eFaktureManagement/eFaktureSync/obj/*/
-/eFaktureManagement/eFaktureSync/bin/*/
-/eFaktureManagement/eFaktureSync/obj/
-/eFaktureManagement/eFaktureSync/bin/
-/eFaktureManagement/eFaktureManagementBase/obj/*/
-/eFaktureManagement/eFaktureManagementBase/bin/*/
-
-/eFaktureManagement/eFaktureManagementBase/obj/
-/eFaktureManagement/eFaktureManagementBase/bin/
