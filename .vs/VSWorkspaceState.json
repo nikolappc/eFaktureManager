@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\eFaktureManagement"
+    "\\eFaktureManagement",
+    "\\eFaktureManagement\\eFaktureManagement"
   ],
-  "SelectedNode": "\\eFaktureManagement\\eFaktureManagement.sln",
+  "SelectedNode": "\\eFaktureManagement\\eFaktureManagement\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

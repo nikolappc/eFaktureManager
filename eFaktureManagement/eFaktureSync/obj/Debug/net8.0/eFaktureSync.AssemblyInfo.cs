@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eFaktureSync")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2ed0c3218f2dd152dd8bd69cd7f8173030fc4f94")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+49201dfc2b89fc9e606ecf33f2dd2ac97e45cb83")]
 [assembly: System.Reflection.AssemblyProductAttribute("eFaktureSync")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eFaktureSync")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
