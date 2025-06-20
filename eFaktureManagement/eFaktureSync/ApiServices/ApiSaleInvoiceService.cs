@@ -2,6 +2,8 @@
 using eFaktureManagement.ApiModels.Purchase;
 using eFaktureManagement.ApiModels.Sale;
 using eFaktureModel.Api.Models;
+using eFaktureModel.ApiModels.Sale;
+using System.Net.Mime;
 using System.Text.Json;
 
 namespace eFaktureManagement.ApiServices
@@ -63,13 +65,14 @@ namespace eFaktureManagement.ApiServices
         {
             using (var httpClient = new HttpClient())
             {
-                var requestData = "{\"ALIAS\":\"EXTRA\",\"P_USERNAME\":\"WebSite\",\"P_ID\":\"INFO\",\"P_VERIFICATION_CODE\":null}";
-                var requestContent = new StringContent(requestData, System.Text.Encoding.UTF8, "application/json");
+                var request = new SaleChangeRequest { date = date };
+                var requestData = JsonSerializer.Serialize(request);
+                var requestContent = new StringContent(requestData, System.Text.Encoding.UTF8, MediaTypeNames.Application.FormUrlEncoded);
 
-                httpClient.DefaultRequestHeaders.Add("Host", "WEBSERVER");
-                httpClient.DefaultRequestHeaders.Add("Alias", "OPMzqeNCAi");
 
-                var response = await httpClient.PostAsync("PATH TO EXECUTE REQUEST", requestContent);
+
+
+                var response = await httpClient.PostAsync("/swagger/public_v1/swagger.json/api/publicApi/sales-invoice/changes", requestContent);
 
                 // Read the response
                 var responseBody = await response.Content.ReadAsStringAsync();
