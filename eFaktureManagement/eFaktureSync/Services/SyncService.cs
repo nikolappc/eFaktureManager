@@ -15,7 +15,7 @@ namespace eFaktureSync.Services
             this.configRoot = configRoot;
         }
 
-        void Sync()
+        public void Sync()
         {
             throw new NotImplementedException();
         }
