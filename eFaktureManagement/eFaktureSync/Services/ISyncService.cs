@@ -9,5 +9,6 @@ namespace eFaktureSync.Services
     public interface ISyncService
     {
         void Sync();
+        Task SyncAsync();
     }
 }
