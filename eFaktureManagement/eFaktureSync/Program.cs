@@ -16,7 +16,8 @@ var host = Host.CreateDefaultBuilder(args)
     {
 
         //serviceCollection.Configure<IConfiguration>(context.Configuration);
-        serviceCollection.AddScoped<ISyncService, SyncService>();
+        serviceCollection.AddScoped<ISyncService, PurchaseSyncService>();
+        serviceCollection.AddScoped<ISyncService, SalesSyncService>();
         serviceCollection.AddScoped<IApiInvoiceService<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto>, ApiSaleInvoiceService>();
 
     })
