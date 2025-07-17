@@ -11,6 +11,8 @@ namespace eFaktureSync.Services
 {
     public class SalesSyncService : SyncService<SimpleSalesInvoiceDto, SalesInvoiceStatusChangeDto>
     {
+
+
         public SalesSyncService(IConfiguration configRoot, IApiInvoiceService<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto> apiInvoiceService) : base(configRoot, apiInvoiceService)
         {
         }
