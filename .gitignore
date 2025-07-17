@@ -9,3 +9,10 @@
 /eFaktureManagement/.vs/*/
 /.vs/*/
 /.vs/
+/eFaktureManagement/eFaktureSync/obj/Debug/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/eFaktureManagement/eFaktureSync/obj/Debug/net8.0/eFaktureSync.GlobalUsings.g.cs
+/eFaktureManagement/eFaktureSync/obj/Release/net8.0/.NETCoreApp,Version=v8.0.AssemblyAttributes.cs
+/eFaktureManagement/eFaktureSync/obj/Release/net8.0/eFaktureSync.AssemblyInfoInputs.cache
+/eFaktureManagement/eFaktureSync/obj/Release/net8.0/eFaktureSync.assets.cache
+/eFaktureManagement/eFaktureSync/obj/Release/net8.0/eFaktureSync.GeneratedMSBuildEditorConfig.editorconfig
+/eFaktureManagement/eFaktureSync/obj/Release/net8.0/eFaktureSync.GlobalUsings.g.cs
