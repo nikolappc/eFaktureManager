@@ -15,7 +15,7 @@ namespace eFaktureModel.Model.Reference
         public int UserId { get; set; }
         public int InvoiceId { get; set; }
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
-        public InvoiceWorkStatus InvoiceWorkStatus { get; set; };
+        public InvoiceWorkStatus InvoiceWorkStatus { get; set; }
 
 
 

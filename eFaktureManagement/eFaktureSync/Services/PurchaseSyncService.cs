@@ -22,7 +22,22 @@ namespace eFaktureSync.Services
 
         public override void ApplyChanges(List<PurchaseInvoiceStatusChangeDto> changes)
         {
-            throw new NotImplementedException();
+
+            foreach (var change in changes)
+            {
+                
+            }
+           Dictionary<long?, PurchaseInvoiceStatusChangeDto> changesDict = changes?.ToDictionary(x => x.PurchaseInvoiceId)??new();
+            foreach (var id in changesDict.Keys)
+            {
+               
+
+
+            }
+            _context.SaveChanges();
+
+
+
         }
     }
 }

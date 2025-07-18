@@ -8,7 +8,7 @@ using eFaktureManagement.Data;
 
 #nullable disable
 
-namespace eFaktureManagement.Migrations
+namespace eFaktureModel.Migrations
 {
     [DbContext(typeof(eFaktureContext))]
     partial class eFaktureContextModelSnapshot : ModelSnapshot
@@ -222,6 +222,196 @@ namespace eFaktureManagement.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("eFaktureModel.Model.Purchase.PurchaseInvoice", b =>
+                {
+                    b.Property<long>("InvoiceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("InvoiceId"));
+
+                    b.Property<string>("CancelComment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CirInvoiceId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double?>("CirSettledAmount")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("CirStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FactoringContractNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("GlobUniqId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("LastModifiedUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("StornoComment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VatNumberFactoringCompany")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("InvoiceId");
+
+                    b.ToTable("PurchaseInvoice");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Purchase.PurchaseInvoiceChange", b =>
+                {
+                    b.Property<int?>("EventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("EventId"));
+
+                    b.Property<int>("CirAssignmentChange")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CirInvoiceId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsAutoAssigned")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("IsSigned")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("NewInvoiceStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<long>("PurchaseInvoiceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StornoNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SubscriptionKey")
+                        .HasColumnType("text");
+
+                    b.HasKey("EventId");
+
+                    b.HasIndex("PurchaseInvoiceId");
+
+                    b.ToTable("PurchaseInvoiceChange");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Sales.SalesInvoice", b =>
+                {
+                    b.Property<long>("InvoiceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("InvoiceId"));
+
+                    b.Property<string>("CancelComment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("CirInvoiceId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double?>("CirSettledAmount")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("CirStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("FactoringContractNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("GlobUniqId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("LastModifiedUtc")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("StornoComment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("VatNumberFactoringCompany")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("InvoiceId");
+
+                    b.ToTable("SalesInvoice");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Sales.SalesInvoiceChange", b =>
+                {
+                    b.Property<int?>("EventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("EventId"));
+
+                    b.Property<int>("CirAssignmentChange")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CirInvoiceId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("IsAutoAssigned")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("IsSigned")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("NewInvoiceStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<long>("SalesInvoiceId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("StornoNumber")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SubscriptionKey")
+                        .HasColumnType("text");
+
+                    b.HasKey("EventId");
+
+                    b.HasIndex("SalesInvoiceId");
+
+                    b.ToTable("SalesInvoiceChange");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -271,6 +461,28 @@ namespace eFaktureManagement.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Purchase.PurchaseInvoiceChange", b =>
+                {
+                    b.HasOne("eFaktureModel.Model.Purchase.PurchaseInvoice", "PurchaseInvoice")
+                        .WithMany()
+                        .HasForeignKey("PurchaseInvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PurchaseInvoice");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Sales.SalesInvoiceChange", b =>
+                {
+                    b.HasOne("eFaktureModel.Model.Purchase.PurchaseInvoice", "SalesInvoice")
+                        .WithMany()
+                        .HasForeignKey("SalesInvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SalesInvoice");
                 });
 #pragma warning restore 612, 618
         }

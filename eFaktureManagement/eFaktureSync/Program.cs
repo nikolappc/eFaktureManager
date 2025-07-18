@@ -1,7 +1,9 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using eFaktureManagement.ApiServices;
+using eFaktureManagement.Data;
 using eFaktureModel.Api.Models;
 using eFaktureSync.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -16,6 +18,13 @@ var host = Host.CreateDefaultBuilder(args)
     {
 
         //serviceCollection.Configure<IConfiguration>(context.Configuration);
+        serviceCollection.AddScoped<eFaktureContext, eFaktureContext>((provider) =>
+        {
+            return new eFaktureContext(new DbContextOptionsBuilder<eFaktureContext>()
+                .UseSqlServer(context.Configuration.GetConnectionString("eFaktureConnection"))
+                .Options);      
+
+        });
         serviceCollection.AddScoped<ISyncService, PurchaseSyncService>();
         serviceCollection.AddScoped<ISyncService, SalesSyncService>();
         serviceCollection.AddScoped<IApiInvoiceService<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto>, ApiSaleInvoiceService>();

@@ -4,7 +4,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace eFaktureManagement.Migrations
+namespace eFaktureModel.Migrations
 {
     /// <inheritdoc />
     public partial class InitialCreate : Migration
@@ -49,6 +49,52 @@ namespace eFaktureManagement.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PurchaseInvoice",
+                columns: table => new
+                {
+                    InvoiceId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    GlobUniqId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Comment = table.Column<string>(type: "text", nullable: true),
+                    CirStatus = table.Column<int>(type: "integer", nullable: false),
+                    CirInvoiceId = table.Column<string>(type: "text", nullable: false),
+                    LastModifiedUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    CirSettledAmount = table.Column<double>(type: "double precision", nullable: true),
+                    VatNumberFactoringCompany = table.Column<string>(type: "text", nullable: false),
+                    FactoringContractNumber = table.Column<string>(type: "text", nullable: false),
+                    CancelComment = table.Column<string>(type: "text", nullable: true),
+                    StornoComment = table.Column<string>(type: "text", nullable: true),
+                    Status = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PurchaseInvoice", x => x.InvoiceId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SalesInvoice",
+                columns: table => new
+                {
+                    InvoiceId = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    GlobUniqId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Comment = table.Column<string>(type: "text", nullable: true),
+                    CirStatus = table.Column<int>(type: "integer", nullable: false),
+                    CirInvoiceId = table.Column<string>(type: "text", nullable: false),
+                    LastModifiedUtc = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
+                    CirSettledAmount = table.Column<double>(type: "double precision", nullable: true),
+                    VatNumberFactoringCompany = table.Column<string>(type: "text", nullable: false),
+                    FactoringContractNumber = table.Column<string>(type: "text", nullable: false),
+                    CancelComment = table.Column<string>(type: "text", nullable: true),
+                    StornoComment = table.Column<string>(type: "text", nullable: true),
+                    Status = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SalesInvoice", x => x.InvoiceId);
                 });
 
             migrationBuilder.CreateTable(
@@ -157,6 +203,62 @@ namespace eFaktureManagement.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PurchaseInvoiceChange",
+                columns: table => new
+                {
+                    EventId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PurchaseInvoiceId = table.Column<long>(type: "bigint", nullable: false),
+                    Date = table.Column<string>(type: "text", nullable: false),
+                    NewInvoiceStatus = table.Column<int>(type: "integer", nullable: false),
+                    Comment = table.Column<string>(type: "text", nullable: true),
+                    CirInvoiceId = table.Column<string>(type: "text", nullable: true),
+                    SubscriptionKey = table.Column<string>(type: "text", nullable: true),
+                    StornoNumber = table.Column<string>(type: "text", nullable: true),
+                    CirAssignmentChange = table.Column<int>(type: "integer", nullable: false),
+                    IsSigned = table.Column<bool>(type: "boolean", nullable: true),
+                    IsAutoAssigned = table.Column<bool>(type: "boolean", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PurchaseInvoiceChange", x => x.EventId);
+                    table.ForeignKey(
+                        name: "FK_PurchaseInvoiceChange_PurchaseInvoice_PurchaseInvoiceId",
+                        column: x => x.PurchaseInvoiceId,
+                        principalTable: "PurchaseInvoice",
+                        principalColumn: "InvoiceId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SalesInvoiceChange",
+                columns: table => new
+                {
+                    EventId = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    SalesInvoiceId = table.Column<long>(type: "bigint", nullable: false),
+                    Date = table.Column<string>(type: "text", nullable: false),
+                    NewInvoiceStatus = table.Column<int>(type: "integer", nullable: false),
+                    Comment = table.Column<string>(type: "text", nullable: true),
+                    CirInvoiceId = table.Column<string>(type: "text", nullable: true),
+                    SubscriptionKey = table.Column<string>(type: "text", nullable: true),
+                    StornoNumber = table.Column<string>(type: "text", nullable: true),
+                    CirAssignmentChange = table.Column<int>(type: "integer", nullable: false),
+                    IsSigned = table.Column<bool>(type: "boolean", nullable: true),
+                    IsAutoAssigned = table.Column<bool>(type: "boolean", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SalesInvoiceChange", x => x.EventId);
+                    table.ForeignKey(
+                        name: "FK_SalesInvoiceChange_PurchaseInvoice_SalesInvoiceId",
+                        column: x => x.SalesInvoiceId,
+                        principalTable: "PurchaseInvoice",
+                        principalColumn: "InvoiceId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -193,6 +295,16 @@ namespace eFaktureManagement.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PurchaseInvoiceChange_PurchaseInvoiceId",
+                table: "PurchaseInvoiceChange",
+                column: "PurchaseInvoiceId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SalesInvoiceChange_SalesInvoiceId",
+                table: "SalesInvoiceChange",
+                column: "SalesInvoiceId");
         }
 
         /// <inheritdoc />
@@ -214,10 +326,22 @@ namespace eFaktureManagement.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "PurchaseInvoiceChange");
+
+            migrationBuilder.DropTable(
+                name: "SalesInvoice");
+
+            migrationBuilder.DropTable(
+                name: "SalesInvoiceChange");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "PurchaseInvoice");
         }
     }
 }
