@@ -18,6 +18,7 @@ namespace eFaktureModel.Model.Purchase
 
         [ForeignKey("PurchaseInvoice")]
         public long PurchaseInvoiceId { get; set; }
+        public PurchaseInvoiceStatus NewInvoiceStatus { get; set; }
 
         public PurchaseInvoice PurchaseInvoice { get; set; }
     }

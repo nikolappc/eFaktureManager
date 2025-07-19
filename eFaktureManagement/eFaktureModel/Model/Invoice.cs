@@ -21,7 +21,7 @@ namespace eFaktureModel.Model
 
         public string? Comment { get; set; }
 
-        public CirInvoiceStatus CirStatus { get; set; }
+        public eFaktureModel.Api.Models.CirInvoiceStatus CirStatus { get; set; }
 
         public string CirInvoiceId { get; set; }
 
@@ -39,7 +39,6 @@ namespace eFaktureModel.Model
 
         public string? StornoComment { get; set; }
 
-        public SalesInvoiceStatus Status { get; set; }
 
     }
 }

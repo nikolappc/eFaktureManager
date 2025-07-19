@@ -17,6 +17,7 @@ namespace eFaktureModel.Model.Purchase
     public class PurchaseInvoice : Invoice
     {
 
+        public eFaktureModel.Api.Models.PurchaseInvoiceStatus Status { get; set; }
 
 
     }

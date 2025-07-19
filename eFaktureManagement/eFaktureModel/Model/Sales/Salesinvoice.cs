@@ -14,6 +14,7 @@ namespace eFaktureModel.Model.Sales
 
     public class SalesInvoice : Invoice
     {
+        public eFaktureModel.Api.Models.SalesInvoiceStatus Status { get; set; }
 
 
 

@@ -15,7 +15,7 @@ namespace eFaktureSync.Services
 
 
         
-        private readonly IApiInvoiceService<Status, T> apiInvoiceService;
+        public readonly IApiInvoiceService<Status, T> apiInvoiceService;
 
 
 
@@ -30,7 +30,7 @@ namespace eFaktureSync.Services
             throw new NotImplementedException();
         }
 
-        public abstract void ApplyChanges(List<Status> changes);    
+        public abstract void ApplyChanges(List<Status>? changes);    
 
         public async Task SyncAsync()
         {

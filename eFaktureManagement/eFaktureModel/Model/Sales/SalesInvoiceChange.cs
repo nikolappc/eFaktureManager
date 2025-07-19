@@ -17,6 +17,7 @@ namespace eFaktureModel.Model.Sales
 
         [ForeignKey("SalesInvoice")]
         public long SalesInvoiceId { get; set; }
+        public SalesInvoiceStatus NewInvoiceStatus { get; set; }
 
         public PurchaseInvoice SalesInvoice { get; set; }
 
