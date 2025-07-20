@@ -12,6 +12,7 @@ namespace eFaktureManagement.Data
         {
         }
 
+
         public DbSet<PurchaseInvoice> PurchaseInvoices { get; set; }
 
         public DbSet<SalesInvoice> SalesInvoices { get; set; }
