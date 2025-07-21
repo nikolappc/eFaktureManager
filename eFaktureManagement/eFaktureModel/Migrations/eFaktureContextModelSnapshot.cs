@@ -317,6 +317,31 @@ namespace eFaktureModel.Migrations
                     b.ToTable("PurchaseInvoiceChange");
                 });
 
+            modelBuilder.Entity("eFaktureModel.Model.Reference.UserInvoice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("InvoiceId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("InvoiceWorkStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserInvoices");
+                });
+
             modelBuilder.Entity("eFaktureModel.Model.Sales.SalesInvoice", b =>
                 {
                     b.Property<long>("InvoiceId")

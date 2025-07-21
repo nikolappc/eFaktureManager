@@ -1,4 +1,5 @@
 ﻿using eFaktureModel.Model.Purchase;
+using eFaktureModel.Model.Reference;
 using eFaktureModel.Model.Sales;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace eFaktureManagement.Data
         }
 
 
+        public DbSet<UserInvoice> UserInvoices { get; set; }
         public DbSet<PurchaseInvoice> PurchaseInvoices { get; set; }
 
         public DbSet<SalesInvoice> SalesInvoices { get; set; }
@@ -20,5 +22,9 @@ namespace eFaktureManagement.Data
         public DbSet<PurchaseInvoiceChange> PurchaseInvoicesChange { get; set; }
 
         public DbSet<SalesInvoiceChange> SalesInvoicesChange { get; set; }
+
+        public DbSet<PurchaseInvoiceAttachment> PurchaseInvoiceAttachments { get; set; }
+
+        public DbSet<SalesInvoiceAttachment> SalesInvoiceAttachments { get; set; }  
     }
 }
