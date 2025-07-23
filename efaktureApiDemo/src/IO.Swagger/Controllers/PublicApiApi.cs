@@ -18,6 +18,7 @@ using IO.Swagger.Attributes;
 
 using Microsoft.AspNetCore.Authorization;
 using eFaktureModel.Api.Models;
+using Microsoft.AspNetCore.Http;
 
 namespace IO.Swagger.Controllers
 {
@@ -752,7 +753,6 @@ namespace IO.Swagger.Controllers
 
             throw new NotImplementedException();
         }
-
         /// <summary>
         /// Records VAT on specified invoice calculated by receiver, for invoice with VAT reverse charge
         /// </summary>
@@ -1094,6 +1094,23 @@ namespace IO.Swagger.Controllers
             return new ObjectResult(example);
         }
 
+        [HttpPost]
+        [Route("/swagger/public_v1/swagger.json/api/publicApi/sales-invoice/ubl/upload")]
+        [ValidateModelState]
+        [SwaggerOperation("ApiPublicApiSalesInvoiceUblUploadPost")]
+        [SwaggerResponse(statusCode: 200, type: typeof(MiniInvoiceDto), description: "Success")]
+        public virtual IActionResult ApiPublicApiSalesInvoiceUblUploadPost([FromForm] IFormFile file, [FromHeader] string apiKey, [FromQuery] string requestId, [FromQuery] SendToCir sendToCir, [FromQuery] bool? executeValidation)
+        {
+            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(200, default(MiniInvoiceDto));
+            string exampleJson = null;
+            exampleJson = "{\r\n  \"salesInvoiceId\" : 1,\r\n  \"invoiceId\" : 0,\r\n  \"purchaseInvoiceId\" : 6\r\n}";
+
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<MiniInvoiceDto>(exampleJson)
+            : default(MiniInvoiceDto);            //TODO: Change the data returned
+            return new ObjectResult(example);
+        }
 
         /// <summary>
         /// Download sales invoice ubl as FileStream
