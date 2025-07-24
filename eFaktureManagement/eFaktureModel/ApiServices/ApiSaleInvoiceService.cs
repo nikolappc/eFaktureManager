@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Configuration;
 using System.Net.Http.Headers;
 using System.Net.Mime;
+using System.Text;
 using System.Text.Json;
 using System.Web;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using MiniInvoiceDto = eFaktureModel.Api.Models.MiniInvoiceDto;
 
 namespace eFaktureManagement.ApiServices
 {
@@ -21,12 +23,41 @@ namespace eFaktureManagement.ApiServices
         {
         }
 
-        public ApiModels.MiniInvoiceDto ImportUbl(string requestId, bool sendToCir, bool executeValidation, string xml)
+        public async Task<MiniInvoiceDto?>  ImportUbl(string requestId, bool sendToCir, bool executeValidation, string xml)
         {
-            throw new NotImplementedException();
+            using (var httpClient = new HttpClient())
+            {
+
+                var xmlContent = new StringContent(xml, Encoding.UTF8, "application/xml");
+
+
+
+
+                var queryParams = new Dictionary<string, string?>
+                {
+                    { "requestId", requestId },
+                    { "sendToCir", sendToCir.ToString() },
+                    { "executeValidation", executeValidation.ToString() }
+                };
+
+
+                var fullUrl = QueryHelpers.AddQueryString(configRoot[ApiConstants.API_ROOT] + "/api/publicApi/sales-invoice/ubl", queryParams);
+
+
+                var response = await httpClient.PostAsync(fullUrl, xmlContent);
+
+                // Read the response
+                var responseBody = await response.Content.ReadAsStringAsync();
+                MiniInvoiceDto? resultingInvoice =
+               JsonSerializer.Deserialize<MiniInvoiceDto?>(responseBody);
+                // Process the response data
+
+
+                return resultingInvoice;
+            }
         }
 
-        public async ApiModels.MiniInvoiceDto UploadUbl(string requestId, bool sendToCir, bool executeValidation, byte[] xml)
+        public async Task<MiniInvoiceDto?> UploadUbl(string requestId, bool sendToCir, bool executeValidation, byte[] xml)
         {
             using (var httpClient = new HttpClient())
             {
@@ -55,12 +86,12 @@ namespace eFaktureManagement.ApiServices
 
                 // Read the response
                 var responseBody = await response.Content.ReadAsStringAsync();
-                List<C>? list =
-               JsonSerializer.Deserialize<List<C>>(responseBody);
+                MiniInvoiceDto? resultingInvoice =
+               JsonSerializer.Deserialize<MiniInvoiceDto?>(responseBody);
                 // Process the response data
-                Console.WriteLine(responseBody);
 
-                return list ?? new();
+
+                return resultingInvoice;
             }
         }
     }

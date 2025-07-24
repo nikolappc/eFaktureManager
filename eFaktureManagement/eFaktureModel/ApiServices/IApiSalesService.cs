@@ -1,4 +1,6 @@
-﻿using eFaktureManagement.ApiModels;
+﻿
+
+using eFaktureModel.Api.Models;
 
 namespace eFaktureManagement.ApiServices
 {
