@@ -9,42 +9,118 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using eFaktureModel.Xml.Utility;
+using System.ComponentModel.DataAnnotations;
+using eFaktureModel.Xml.References;
+using eFaktureModel.Xml.Deliveries;
 
 namespace eFaktureModel.Xml
 {
     [XmlRoot("Invoice", Namespace = Namespaces.Invoice)]
     public class Invoice
     {
+
+        //1-1
+        [Required]
+        [XmlElement("ID", Namespace = Namespaces.cbc)]
+        public string ID { get; set; }
+        //1-1
+        [Required]
+        [XmlElement("IssueDate", Namespace = Namespaces.cbc)]
+        public DateTime IssueDate { get; set; }
+        //1-1
+        [Required]
+        [XmlElement("InvoiceTypeCode", Namespace = Namespaces.cbc)]
+        public string InvoiceTypeCode { get; set; }
+        //0-1
+        [XmlElement("DocumentCurrencyCode", Namespace = Namespaces.cbc)]
+        public string? Currency { get; set; }
+        //0-1
+        [XmlElement("DescriptionCode", Namespace = Namespaces.cbc)]
+        public string? DescriptionCode { get; set; }
+
+        //0-1   
+        [XmlElement("DueDate", Namespace = Namespaces.cbc)]
+        public DateTime? DueDate { get; set; }
+
+        //0-1   
+        [XmlElement("BuyerReference", Namespace = Namespaces.cbc)]
+        public string? BuyerReference { get; set; }
+
+        //0-1   
+        [XmlElement("ProjectReference", Namespace = Namespaces.cac)]
+        public ProjectReference? ProjectReference { get; set; } 
+
+        //0-1
+        [XmlElement("ContractDocumentReference", Namespace = Namespaces.cac)]   
+        public ContractDocumentReference? ContractDocumentReference { get; set; } = new ContractDocumentReference();
+
+        //0-1   
+        [XmlElement("OrderReference", Namespace = Namespaces.cac)]
+        public OrderReference? OrderReference { get; set; }
+
+        [XmlElement("ReceiptDocumentReference", Namespace = Namespaces.cac)]
+        public ReceiptDocumentReference? ReceiptDocumentReference { get; set; }
+
+        [XmlElement("DespatchDocumentReference", Namespace = Namespaces.cac)]
+        public DespatchDocumentReference? DespatchDocumentReference { get; set; }
+
+        [XmlElement("OriginatorDocumentReference", Namespace = Namespaces.cac)]
+        public OriginatorDocumentReference? OriginatorDocumentReference { get; set; }
+
+        [XmlElement("AdditionalDocumentReference", Namespace = Namespaces.cac)]
+        public AdditionalDocumentReference? AdditionalDocumentReference { get; set; }
+        [XmlElement(ElementName = "AccountingCost", Namespace = Namespaces.cbc)]
+        public string? AccountingCost { get; set; }
+
+
+        [XmlElement(ElementName = "PaymentTerms", Namespace = Namespaces.cac)]
+        public PaymentTerms? PaymentTerms { get; set; }
+
+        [XmlElement("Note", Namespace = Namespaces.cbc)]
+        public string? Note { get; set; }
+        [XmlElement(ElementName = "ProfileID", Namespace = Namespaces.cbc)]
+        public string ProfileID { get; set; }
+        [Required]
         [XmlElement("CustomizationID", Namespace = Namespaces.cbc)]
         public string CustomizationID { get; set; }
 
-        [XmlElement("ID", Namespace = Namespaces.cbc)]
-        public string ID { get; set; }
 
-        [XmlElement("IssueDate", Namespace = Namespaces.cbc)]
-        public DateTime IssueDate { get; set; }
+        [XmlElement(ElementName = "BillingReference", Namespace = Namespaces.cac)]
+        public List<BillingReference> BillingReferences { get; set; }
+        [Required]
+        [XmlElement("AccountingSupplierParty", Namespace = Namespaces.cac)]
+        public PartyContainer AccountingSupplierParty { get; set; }
+        [Required]
+        [XmlElement("AccountingCustomerParty", Namespace = Namespaces.cac)]
+        public PartyContainer AccountingCustomerParty { get; set; }
 
-        [XmlElement("DueDate", Namespace = Namespaces.cbc)]
-        public DateTime DueDate { get; set; }
 
-        [XmlElement("InvoiceTypeCode", Namespace = Namespaces.cbc)]
-        public string InvoiceTypeCode { get; set; }
+        [XmlElement("PayeeParty", Namespace = Namespaces.cac)]
+        public PartyContainer? PayeeParty { get; set; }
 
-        [XmlElement("Note", Namespace = Namespaces.cbc)]
-        public string Note { get; set; }
+        [Required]
+        [XmlElement("TaxRepresentativeParty", Namespace = Namespaces.cac)]
+        public PartyContainer TaxRepresentativeParty { get; set; }
 
-        [XmlElement("DocumentCurrencyCode", Namespace = Namespaces.cbc)]
-        public string Currency { get; set; }
+        [XmlElement(ElementName = "Delivery", Namespace = Namespaces.cac)]
+        public Delivery? Delivery { get; set; }
+
+
+        //TODO CONTINUE 
+
+
+        [XmlElement("TaxCurrencyCode", Namespace = Namespaces.cbc)]
+        public string TaxCurrencyCode { get; set;  }    
+
+
+
+
+
 
         [XmlElement("InvoicePeriod", Namespace = Namespaces.cac)]
         public InvoicePeriod InvoicePeriod { get; set; }
 
-        [XmlElement("AccountingSupplierParty", Namespace = Namespaces.cac)]
-        public PartyContainer AccountingSupplierParty { get; set; }
-
-        [XmlElement("AccountingCustomerParty", Namespace = Namespaces.cac)]
-        public PartyContainer AccountingCustomerParty { get; set; }
-
+      
         [XmlElement("PaymentMeans", Namespace = Namespaces.cac)]
         public PaymentMeans PaymentMeans { get; set; }
 
