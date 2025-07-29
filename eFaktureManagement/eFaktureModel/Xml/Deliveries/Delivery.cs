@@ -14,7 +14,7 @@ namespace eFaktureModel.Xml.Deliveries
         public DeliveryParty DeliveryParty { get; set; }
 
         [XmlElement(ElementName = "DeliveryLocation", Namespace = Namespaces.cac)]
-        public ID DeliveryLocation { get; set; }
+        public DeliveryLocation DeliveryLocation { get; set; }
 
         [XmlElement(ElementName = "ActualDeliveryDate", Namespace = Namespaces.cbc)]
         public DateTime? ActualDeliveryDate { get; set; }

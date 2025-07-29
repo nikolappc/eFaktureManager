@@ -13,6 +13,12 @@ namespace eFaktureModel.Xml.Payment
     {
         [XmlElement("ID", Namespace = Namespaces.cbc)]
         public string AccountID { get; set; }
+        [XmlElement(ElementName = "Name", Namespace = Namespaces.cbc)]
+        public string Name { get; set; }  // BT: Payment account name
+
+        [XmlElement(ElementName = "FinancialInstitutionBranch", Namespace = Namespaces.cac)]
+        public FinancialInstitutionBranch FinancialInstitutionBranch { get; set; }
+
     }
 
 
