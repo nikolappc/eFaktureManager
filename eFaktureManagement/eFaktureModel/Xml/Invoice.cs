@@ -105,6 +105,15 @@ namespace eFaktureModel.Xml
         [XmlElement(ElementName = "Delivery", Namespace = Namespaces.cac)]
         public Delivery? Delivery { get; set; }
 
+        [XmlElement("InvoicePeriod", Namespace = Namespaces.cac)]
+        public InvoicePeriod InvoicePeriod { get; set; }
+
+      
+        [XmlElement("PaymentMeans", Namespace = Namespaces.cac)]
+        public PaymentMeans PaymentMeans { get; set; }
+        [XmlElement(ElementName = "AllowanceCharge", Namespace = Namespaces.cac)]
+        public List<AllowanceCharge> AllowanceCharges { get; set; } // 0..n
+
 
         //TODO CONTINUE 
 
@@ -117,12 +126,6 @@ namespace eFaktureModel.Xml
 
 
 
-        [XmlElement("InvoicePeriod", Namespace = Namespaces.cac)]
-        public InvoicePeriod InvoicePeriod { get; set; }
-
-      
-        [XmlElement("PaymentMeans", Namespace = Namespaces.cac)]
-        public PaymentMeans PaymentMeans { get; set; }
 
         [XmlElement("TaxTotal", Namespace = Namespaces.cac)]
         public TaxTotal TaxTotal { get; set; }

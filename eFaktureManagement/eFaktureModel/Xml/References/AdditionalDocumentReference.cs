@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using eFaktureModel.Xml.Utility;
+using System.ComponentModel.DataAnnotations;
 using System.Xml.Serialization;
 
 namespace eFaktureModel.Xml.References
