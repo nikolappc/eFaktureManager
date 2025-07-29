@@ -12,6 +12,7 @@ using eFaktureModel.Xml.Utility;
 using System.ComponentModel.DataAnnotations;
 using eFaktureModel.Xml.References;
 using eFaktureModel.Xml.Deliveries;
+using eFaktureModel.Xml.Charges;
 
 namespace eFaktureModel.Xml
 {
@@ -48,10 +49,10 @@ namespace eFaktureModel.Xml
 
         //0-1   
         [XmlElement("ProjectReference", Namespace = Namespaces.cac)]
-        public ProjectReference? ProjectReference { get; set; } 
+        public ProjectReference? ProjectReference { get; set; }
 
         //0-1
-        [XmlElement("ContractDocumentReference", Namespace = Namespaces.cac)]   
+        [XmlElement("ContractDocumentReference", Namespace = Namespaces.cac)]
         public ContractDocumentReference? ContractDocumentReference { get; set; } = new ContractDocumentReference();
 
         //0-1   
@@ -108,18 +109,25 @@ namespace eFaktureModel.Xml
         [XmlElement("InvoicePeriod", Namespace = Namespaces.cac)]
         public InvoicePeriod InvoicePeriod { get; set; }
 
-      
+
         [XmlElement("PaymentMeans", Namespace = Namespaces.cac)]
         public PaymentMeans PaymentMeans { get; set; }
+        // 0..n
         [XmlElement(ElementName = "AllowanceCharge", Namespace = Namespaces.cac)]
-        public List<AllowanceCharge> AllowanceCharges { get; set; } // 0..n
+        public List<AllowanceCharge> AllowanceCharges { get; set; }
 
+        [XmlElement("LegalMonetaryTotal", Namespace = Namespaces.cac)]
+        public LegalMonetaryTotal LegalMonetaryTotal { get; set; }
+
+        [XmlElement("TaxTotal", Namespace = Namespaces.cac)]
+        public TaxTotal TaxTotal { get; set; }
+     
 
         //TODO CONTINUE 
 
 
         [XmlElement("TaxCurrencyCode", Namespace = Namespaces.cbc)]
-        public string TaxCurrencyCode { get; set;  }    
+        public string TaxCurrencyCode { get; set; }
 
 
 
@@ -127,11 +135,6 @@ namespace eFaktureModel.Xml
 
 
 
-        [XmlElement("TaxTotal", Namespace = Namespaces.cac)]
-        public TaxTotal TaxTotal { get; set; }
-
-        [XmlElement("LegalMonetaryTotal", Namespace = Namespaces.cac)]
-        public LegalMonetaryTotal LegalMonetaryTotal { get; set; }
 
         [XmlElement("InvoiceLine", Namespace = Namespaces.cac)]
         public InvoiceLine InvoiceLine { get; set; }

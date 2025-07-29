@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 
-namespace eFaktureModel.Xml
+namespace eFaktureModel.Xml.Tax
 {
     public class TaxScheme
     {

@@ -10,6 +10,13 @@ namespace eFaktureModel.Xml.References
         [XmlElement(ElementName = "ID", Namespace = Namespaces.cbc)]
         public ID ID { get; set; }
 
+        [XmlElement(ElementName = "DocumentDescription", Namespace = Namespaces.cbc)]
+        public string DocumentDescription { get; set; }
+
+        [XmlElement(ElementName = "Attachment", Namespace = Namespaces.cac)]
+        public Attachment Attachment { get; set; }
+
+
 
     }
 }

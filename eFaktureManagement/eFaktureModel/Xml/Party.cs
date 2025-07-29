@@ -1,4 +1,5 @@
-﻿using eFaktureModel.Xml.Utility;
+﻿using eFaktureModel.Xml.Tax;
+using eFaktureModel.Xml.Utility;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 

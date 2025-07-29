@@ -17,6 +17,15 @@ namespace eFaktureModel.Xml.Tax
         [XmlElement("Percent", Namespace = Namespaces.cbc)]
         public decimal Percent { get; set; }
 
+        [XmlElement(ElementName = "TaxExemptionReason", Namespace = Namespaces.cbc)]
+        public string TaxExemptionReason { get; set; }
+
+        [XmlElement(ElementName = "TaxExemptionReasonCode", Namespace = Namespaces.cbc)]
+        public string TaxExemptionReasonCode { get; set; }
+
+
+
+
         [XmlElement("TaxScheme", Namespace = Namespaces.cac)]
         public TaxScheme TaxScheme { get; set; }
     }

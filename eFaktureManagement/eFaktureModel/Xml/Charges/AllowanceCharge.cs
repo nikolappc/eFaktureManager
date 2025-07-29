@@ -8,13 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace eFaktureModel.Xml.Allowance
+namespace eFaktureModel.Xml.Charges
 {
 
     public class AllowanceCharge
     {
         [XmlElement(ElementName = "ChargeIndicator", Namespace = Namespaces.cbc)]
-        public bool ChargeIndicator { get; set; } = false; // Must be false for allowance
+        public bool ChargeIndicator { get; set; } // Must be false for allowance and true for charge
 
         [XmlElement(ElementName = "Amount", Namespace = Namespaces.cbc)]
         [Required]
