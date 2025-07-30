@@ -10,7 +10,7 @@ using System.Xml.Serialization;
 namespace eFaktureModel.Xml.References
 {
 
-    public class DocumentReference:IDReference
+    public class SchemeReference:IDReference
     {
 
 

@@ -21,7 +21,7 @@ namespace eFaktureModel.Xml.InvoiceLines
         public string Note { get; set; }
 
         [XmlElement(ElementName = "DocumentReference", Namespace = Namespaces.cac)]
-        public DocumentReference DocumentReference { get; set; }
+        public SchemeReference DocumentReference { get; set; }
 
 
 

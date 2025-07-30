@@ -13,7 +13,13 @@ namespace eFaktureModel.Xml.InvoiceLines
     {
         [XmlElement("PriceAmount", Namespace = Namespaces.cbc)]
         public Amount PriceAmount { get; set; }
+        [XmlElement(ElementName = "BaseQuantity", Namespace = Namespaces.cbc)]
+        public Quantity BaseQuantity { get; set; }
+
+        [XmlElement(ElementName = "AllowanceCharge", Namespace = Namespaces.cac)]
+        public PriceDiscount PriceDiscount { get; set; }
     }
+
 
 
 }
