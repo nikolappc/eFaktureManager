@@ -1,6 +1,7 @@
 ﻿using eFaktureModel.Xml.Utility;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,9 +9,14 @@ using System.Xml.Serialization;
 
 namespace eFaktureModel.Xml.References
 {
-    public class ProjectReference
+
+    public class DocumentReference:IDReference
     {
-        [XmlElement("ID", Namespace = Namespaces.cbc)]
-        public string ID { get; set; }
+
+
+        [XmlAttribute(AttributeName = "schemeID")]
+        public string SchemeID { get; set; }
     }
+
+
 }

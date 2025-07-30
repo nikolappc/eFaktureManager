@@ -49,21 +49,21 @@ namespace eFaktureModel.Xml
 
         //0-1   
         [XmlElement("ProjectReference", Namespace = Namespaces.cac)]
-        public ProjectReference? ProjectReference { get; set; }
+        public IDReference? ProjectReference { get; set; }
 
         //0-1
         [XmlElement("ContractDocumentReference", Namespace = Namespaces.cac)]
-        public ContractDocumentReference? ContractDocumentReference { get; set; } = new ContractDocumentReference();
+        public IDReference? ContractDocumentReference { get; set; } = new IDReference();
 
         //0-1   
         [XmlElement("OrderReference", Namespace = Namespaces.cac)]
         public OrderReference? OrderReference { get; set; }
 
         [XmlElement("ReceiptDocumentReference", Namespace = Namespaces.cac)]
-        public ReceiptDocumentReference? ReceiptDocumentReference { get; set; }
+        public IDReference? ReceiptDocumentReference { get; set; }
 
         [XmlElement("DespatchDocumentReference", Namespace = Namespaces.cac)]
-        public DespatchDocumentReference? DespatchDocumentReference { get; set; }
+        public IDReference? DespatchDocumentReference { get; set; }
 
         [XmlElement("OriginatorDocumentReference", Namespace = Namespaces.cac)]
         public OriginatorDocumentReference? OriginatorDocumentReference { get; set; }
@@ -121,7 +121,8 @@ namespace eFaktureModel.Xml
 
         [XmlElement("TaxTotal", Namespace = Namespaces.cac)]
         public TaxTotal TaxTotal { get; set; }
-     
+            [XmlElement("InvoiceLine", Namespace = Namespaces.cac)]
+        public InvoiceLine InvoiceLine { get; set; }
 
         //TODO CONTINUE 
 
@@ -136,7 +137,6 @@ namespace eFaktureModel.Xml
 
 
 
-        [XmlElement("InvoiceLine", Namespace = Namespaces.cac)]
-        public InvoiceLine InvoiceLine { get; set; }
+
     }
 }

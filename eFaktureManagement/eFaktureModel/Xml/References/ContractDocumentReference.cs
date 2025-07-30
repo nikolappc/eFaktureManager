@@ -3,7 +3,7 @@ using System.Xml.Serialization;
 
 namespace eFaktureModel.Xml.References
 {
-    public class ContractDocumentReference
+    public class IDReference
     {
 
         [XmlElement("ID", Namespace = Namespaces.cbc)]
