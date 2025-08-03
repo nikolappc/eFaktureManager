@@ -1,37 +1,25 @@
-﻿using eFaktureManagement.Dto.Unassigned;
+﻿using eFaktureManagement.Data;
+using eFaktureManagement.Dto.Unassigned;
 using eFaktureManagement.Paging;
 using eFaktureManagement.Services.Paging;
 
 namespace eFaktureManagement.Services.Unassigned
 {
-    public class UnassignedPagingService : IPagingService<UnassignedFilter, UnassignedPageItem>
+    public class UnassignedPagingService : AbstractBasePagingService<UnassignedFilter, UnassignedPageItem>
     {
-        public Page<UnassignedPageItem> GetPage(int pageNumber, int pageSize)
+        eFaktureContext _context;
+
+        public UnassignedPagingService(eFaktureContext context)
+        {
+            _context = context;
+        }
+
+        public override IQueryable<UnassignedPageItem> Query(int pageNumber, int pageSize, UnassignedFilter? filter = null, Sorting? s = null)
         {
             throw new NotImplementedException();
         }
 
-        public Page<UnassignedPageItem> GetPage(int pageNumber, int pageSize, Sorting? s)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Page<UnassignedPageItem> GetPage(int pageNumber, int pageSize, UnassignedFilter? filter, Sorting? s)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Page<UnassignedPageItem>> GetPageAsync(int pageNumber, int pageSize)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Page<UnassignedPageItem>> GetPageAsync(int pageNumber, int pageSize, Sorting? s)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<Page<UnassignedPageItem>> GetPageAsync(int pageNumber, int pageSize, UnassignedFilter? filter, Sorting? s)
+        public override Task<IQueryable<UnassignedPageItem>> QueryAsync(int pageNumber, int pageSize, UnassignedFilter? f = null, Sorting? s = null)
         {
             throw new NotImplementedException();
         }
