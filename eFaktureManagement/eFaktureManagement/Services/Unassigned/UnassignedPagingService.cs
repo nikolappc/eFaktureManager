@@ -16,12 +16,31 @@ namespace eFaktureManagement.Services.Unassigned
 
         public override IQueryable<UnassignedPageItem> Query(int pageNumber, int pageSize, UnassignedFilter? filter = null, Sorting? s = null)
         {
-            throw new NotImplementedException();
+            var items = (
+                from inv in _context.PurchaseInvoices
+
+                join ua in _context.UserInvoices on inv.InvoiceId equals ua.InvoiceId into uAJ
+                from ua in uAJ.DefaultIfEmpty()
+                join u in _context.Users on ua.UserId equals u.Id into uJ
+                from u in uJ.DefaultIfEmpty()
+
+                where (filter == null || (inv.LastModifiedUtc >= filter.StartDate && inv.LastModifiedUtc <= filter.EndDate && u.UserName == filter.UserName))
+                where ua == null
+
+                select new UnassignedPageItem
+                {
+                    InvoiceId = inv.InvoiceId,
+                    LastModifiedUtc = inv.LastModifiedUtc,
+                    Status = inv.Status,
+                }
+                );
+
+            return items;
         }
 
-        public override Task<IQueryable<UnassignedPageItem>> QueryAsync(int pageNumber, int pageSize, UnassignedFilter? f = null, Sorting? s = null)
+        public async override Task<IQueryable<UnassignedPageItem>> QueryAsync(int pageNumber, int pageSize, UnassignedFilter? f = null, Sorting? s = null)
         {
-            throw new NotImplementedException();
+            return Query(pageNumber, pageSize, f, s);    
         }
     }
 }
