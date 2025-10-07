@@ -4,7 +4,7 @@ var API_URL = 'https://localhost:'
 
 export default createStore({
   state: {
-    myInvoice
+    myInvoice:{}
   },
   getters: {
   },

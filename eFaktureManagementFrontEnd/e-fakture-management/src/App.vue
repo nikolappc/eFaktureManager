@@ -1,29 +1,39 @@
+<script>
+import { computed, defineAsyncComponent } from 'vue'
+import { useRoute } from 'vue-router'
+
+// Dynamically require all layouts from the layouts folder (Webpack feature)
+const layoutContext = require.context('@/layouts', false, /\.vue$/)
+
+export default {
+  setup() {
+    const route = useRoute()
+
+    const currentLayout = computed(() => {
+      const layoutName = (route.meta && route.meta.layout) || 'MainLayout'
+      const layoutPath = `./${layoutName}.vue`
+
+      let loader
+
+      if (layoutContext.keys().includes(layoutPath)) {
+        loader = () => Promise.resolve(layoutContext(layoutPath))
+      } else {
+        loader = () => Promise.resolve(layoutContext('./MainLayout.vue'))
+      }
+
+      return defineAsyncComponent(loader)
+    })
+
+    return { currentLayout }
+  },
+}
+</script>
+
 <template>
   <v-app>
-    <v-layout>
-
-      <v-app-bar :elevation="2" color="lime-lighten-2">
-        <template v-slot:prepend>
-          <v-app-bar-nav-icon></v-app-bar-nav-icon>
-        </template>
-      
-        <v-app-bar-title >eFakture management</v-app-bar-title>
-   
-         <router-link to="/"><v-btn ><v-icon icon="mdi-home"></v-icon>Home </v-btn></router-link>
-         <router-link to="/about"><v-btn ><v-icon icon="mdi-information-slab-circle-outline"></v-icon>About </v-btn></router-link>
-         <v-spacer></v-spacer>
-
-
-      </v-app-bar>
-      <v-main>
-        <v-container fluid>
-          <router-view />
-
-        </v-container>
-      </v-main>
-    </v-layout>
-    <v-footer></v-footer>
-
+    <component :is="currentLayout">
+      <router-view />
+    </component>
   </v-app>
 </template>
 
@@ -34,18 +44,5 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
 }
 </style>

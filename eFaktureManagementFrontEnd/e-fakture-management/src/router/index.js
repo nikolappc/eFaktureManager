@@ -5,11 +5,14 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: HomeView,
+    meta: { layout: 'MainLayout' },
+
   },
   {
     path: '/about',
     name: 'about',
+    meta: { layout: 'MainLayout' },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
