@@ -31,9 +31,11 @@ export default {
 
 <template>
   <v-app>
-    <component :is="currentLayout">
-      <router-view />
-    </component>
+
+      <component :is="currentLayout">
+        <router-view />
+      </component>
+
   </v-app>
 </template>
 
