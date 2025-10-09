@@ -11,5 +11,21 @@ namespace eFaktureManagement.ApiServices
 
         bool VatReverseCarge(string invoiceId, double ammount);
 
+
+        //TODO
+
+        // GET /api/publicApi/purchase-invoice/ubl/{cirInvoiceId}
+
+        // POST /api/publicApi/purchase-invoice/{cirInvoiceId}/assign
+
+        // GET /api/publicApi/purchase-invoice/{cirInvoiceId}/cancelassign
+
+        // POST /api/publicApi/purchase-invoice/acceptRejectPurchaseInvoiceByCirInvoiceId
+
+        // GET /api/publicApi/purchase-cir-invoice/getPurchaseInvoiceAssignationHistory/{cirInvoiceId}
+
+        // GET /api/publicApi/purchase-cir-invoice/getInvoicePaymentsAndHistory/{cirInvoiceId}
+
+
     }
 }
