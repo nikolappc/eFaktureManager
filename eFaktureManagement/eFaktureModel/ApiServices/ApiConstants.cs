@@ -15,5 +15,8 @@ namespace eFaktureSync.ApiServices
        public static string SALES_SINGLE = "/swagger/public_v1/swagger.json/api/publicApi/sales-invoice";  
 
         public static string PURCHASE_ACCEPT_REJECT = "/swagger/public_v1/swagger.json/api/publicApi/purchase-invoice/acceptRejectPurchaseInvoice";
+
+
+
     }
 }

@@ -2,8 +2,10 @@
 using eFaktureManagement.ApiModels.Purchase;
 using eFaktureModel.Api.Models;
 using eFaktureModel.ApiModels.Sale;
+using eFaktureModel.ApiServices.Util;
 using eFaktureSync.ApiServices;
 using Microsoft.Extensions.Configuration;
+using System.Collections.Specialized;
 using System.Net.Mime;
 using System.Text.Json;
 using System.Web;
@@ -32,20 +34,12 @@ namespace eFaktureManagement.ApiServices
 
         public async Task<List<C>?> GetChangesAsync(DateTime date)
         {
-            using (var httpClient = new HttpClient())
+            using (var httpClient = new HttpClientBuilder<List<C>?>(configRoot))
             {
                 var request = new SaleChangeRequest { date = date };
-                var requestData = JsonSerializer.Serialize(request);
-                var requestContent = new StringContent(requestData, System.Text.Encoding.UTF8, MediaTypeNames.Application.FormUrlEncoded);
-
-                var response = await httpClient.PostAsync(configRoot[ApiConstants.API_ROOT] + pathToChanges, requestContent);
-
-                // Read the response
-                var responseBody = await response.Content.ReadAsStringAsync();
-                List<C>? list =
-               JsonSerializer.Deserialize<List<C>>(responseBody);
-                // Process the response data
-                Console.WriteLine(responseBody);
+                
+                httpClient.AddHttpContentBody(request).AddPath(pathToChanges);
+                List<C>? list = await httpClient.PostResult();
 
                 return list ?? new();
             }
@@ -61,25 +55,14 @@ namespace eFaktureManagement.ApiServices
 
         public async Task<I?> GetInvoiceAsync(long invoiceId)
         {
-            using (var httpClient = new HttpClient())
+            using (var httpClient = new HttpClientBuilder<I>(configRoot))
             {
-                var baseUri = configRoot[ApiConstants.API_ROOT] + pathToSingles;
-                var uriBuilder = new UriBuilder(baseUri);
-                var query = HttpUtility.ParseQueryString(uriBuilder.Query);
 
-                query["invoiceId"] = invoiceId.ToString();
+                httpClient.AddQueryItem("invoiceId", invoiceId.ToString()).AddPath(pathToChanges);
 
+                var elem = await httpClient.GetResult();
 
-                uriBuilder.Query = query.ToString();
-                Uri finalUri = uriBuilder.Uri;
-
-
-                var response = await httpClient.GetAsync(finalUri);
-
-                var responseBody = await response.Content.ReadAsStringAsync();
-
-                I? elem = JsonSerializer.Deserialize<I>(responseBody);
-
+          
 
                 return elem;
             }
@@ -96,6 +79,16 @@ namespace eFaktureManagement.ApiServices
         }
 
         public bool VatReverseCarge(string invoiceId, double ammount)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<byte[]> GetPdfAsync(long invoiceId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<byte[]> DownloadSigned(long invoideId)
         {
             throw new NotImplementedException();
         }

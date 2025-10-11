@@ -23,6 +23,16 @@ namespace eFaktureManagement.ApiServices
         {
         }
 
+        public Task<InvoiceDto> CancelDraft(long invoideId, string cancelComment)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteDraft(long invoideId)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<MiniInvoiceDto?>  ImportUbl(string requestId, bool sendToCir, bool executeValidation, string xml)
         {
             using (var httpClient = new HttpClient())
@@ -55,6 +65,11 @@ namespace eFaktureManagement.ApiServices
 
                 return resultingInvoice;
             }
+        }
+
+        public Task<InvoiceDto> Storno(long invoideId, string stornoNumber, string stornoComment)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<MiniInvoiceDto?> UploadUbl(string requestId, bool sendToCir, bool executeValidation, byte[] xml)
