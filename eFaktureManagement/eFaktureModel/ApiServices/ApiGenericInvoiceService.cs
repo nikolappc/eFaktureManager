@@ -3,6 +3,7 @@ using eFaktureManagement.ApiModels.Purchase;
 using eFaktureModel.Api.Models;
 using eFaktureModel.ApiModels.Sale;
 using eFaktureModel.ApiServices.Util;
+using eFaktureModel.Enums;
 using eFaktureSync.ApiServices;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Specialized;
@@ -16,17 +17,16 @@ namespace eFaktureManagement.ApiServices
 {
     public class ApiGenericInvoiceService<C, I> : IApiInvoiceService<C, I>
     {
-        public string pathToChanges;
-        public string pathToSingles;
+        public Dictionary<EApiPaths, string> PathsConfirguration { get; set; }
 
 
         public readonly IConfiguration configRoot;
 
-        public ApiGenericInvoiceService(IConfiguration configRoot, string pathToSingles, string pathToChanges)
+        public ApiGenericInvoiceService(IConfiguration configRoot, Dictionary<EApiPaths, string> pathsConfirguration)
         {
+
             this.configRoot = configRoot;
-            this.pathToSingles = pathToSingles;
-            this.pathToChanges = pathToChanges;
+            PathsConfirguration = pathsConfirguration;
         }
 
 
@@ -37,8 +37,8 @@ namespace eFaktureManagement.ApiServices
             using (var httpClient = new HttpClientBuilder<List<C>?>(configRoot))
             {
                 var request = new SaleChangeRequest { date = date };
-                
-                httpClient.AddHttpContentBody(request).AddPath(pathToChanges);
+
+                httpClient.AddHttpContentBody(request).AddPath(PathsConfirguration[EApiPaths.CHANGES]);
                 List<C>? list = await httpClient.PostResult();
 
                 return list ?? new();
@@ -46,9 +46,27 @@ namespace eFaktureManagement.ApiServices
         }
 
 
-        public Task<List<long>?> GetIdsAsync(string status, DateTime from, DateTime to)
+        public async Task<List<long>?> GetIdsAsync(string status, DateTime from, DateTime to)
         {
-            throw new NotImplementedException();
+            using (var httpClient = new HttpClientBuilder<List<long>?>(configRoot))
+            {
+
+                var body = new
+                {
+
+                    status,
+                    from,
+                    to
+                };
+
+                httpClient.AddHttpContentBody(body).AddPath(PathsConfirguration[EApiPaths.CHANGES]);
+
+                var elem = await httpClient.PostResult();
+
+
+
+                return elem;
+            }
         }
 
 
@@ -58,11 +76,9 @@ namespace eFaktureManagement.ApiServices
             using (var httpClient = new HttpClientBuilder<I>(configRoot))
             {
 
-                httpClient.AddQueryItem("invoiceId", invoiceId.ToString()).AddPath(pathToChanges);
+                httpClient.AddQueryItem("invoiceId", invoiceId.ToString()).AddPath(PathsConfirguration[EApiPaths.IDS]);
 
                 var elem = await httpClient.GetResult();
-
-          
 
                 return elem;
             }

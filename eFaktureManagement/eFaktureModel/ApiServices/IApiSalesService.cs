@@ -13,9 +13,7 @@ namespace eFaktureManagement.ApiServices
         Task<InvoiceDto> CancelDraft(long invoideId, string cancelComment);
         Task<InvoiceDto> Storno(long invoideId, string stornoNumber, string stornoComment);
         Task DeleteDraft(long invoideId);
-
-        // TODO GET /api/publicApi/sales-invoice/getValueAddedTaxExemptionReasonList
-
+        Task<ValueAddedTaxExemptionReasonDto?> GetValueAddedTaxExemptionReasonList();
 
     }
 }

@@ -1,9 +1,11 @@
 ﻿using eFaktureModel.ApiModels.Sale;
+using eFaktureModel.Enums;
 using eFaktureSync.ApiServices;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -16,39 +18,39 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace eFaktureModel.ApiServices.Util
 {
-    public class HttpClientBuilder<T> : IDisposable
+    public class HttpClientBuilder<T> : IDisposable, IHttpClientBuilder<T>
     {
         private readonly IConfiguration configRoot;
-        public HttpClient httpClient { get; private set; }
-        private UriBuilder _uriBuilder;
+        private HttpClient _httpClient;
+        private UriBuilder? _uriBuilder;
 
-        private NameValueCollection _queryParams;
+        private NameValueCollection? _queryParams;
         private bool _disposedValue;
-        private HttpContent _httpContent;
+        private HttpContent? _httpContent;
 
         public HttpClientBuilder(IConfiguration configRoot)
         {
             this.configRoot = configRoot;
-            this._uriBuilder = new UriBuilder(configRoot[ApiConstants.API_ROOT]);   
+            this._uriBuilder = new UriBuilder(configRoot[EApiPaths.API_ROOT.ToString()]??"");   
             _queryParams = new NameValueCollection();
-            httpClient = new HttpClient();  
+            _httpClient = new HttpClient();  
 
         }
 
-        public HttpClientBuilder<T> AddQueryItem(string name, string item)
+        public IHttpClientBuilder<T> AddQueryItem(string name, string item)
         {
             _queryParams[name] = item;
 
             return this;
         }
-        public HttpClientBuilder<T> AddPath(string path)
+        public IHttpClientBuilder<T> AddPath(string path)
         {
             _uriBuilder.Path = path;
 
             
             return this;  
         }
-        public HttpClientBuilder<T> AddHttpContentUbl(byte[] data)
+        public IHttpClientBuilder<T> AddHttpContentUbl(byte[] data)
         {
             var fileContent = new ByteArrayContent(data);
             fileContent.Headers.ContentType = new MediaTypeHeaderValue("application/xml");
@@ -62,14 +64,14 @@ namespace eFaktureModel.ApiServices.Util
         }
 
 
-        public HttpClientBuilder<T> AddQueryParams(Dictionary<string, string?> keyValues)
+        public IHttpClientBuilder<T> AddQueryParams(Dictionary<string, string?> keyValues)
         {
             keyValues.ToList().ForEach(kv => _queryParams[kv.Key] = kv.Value);
 
             return this;    
         }
 
-        public HttpClientBuilder<T> AddHttpContentBody(object requestBody)
+        public IHttpClientBuilder<T> AddHttpContentBody(object requestBody)
         {
             var requestData = JsonSerializer.Serialize(requestBody);
             _httpContent = new StringContent(requestData, System.Text.Encoding.UTF8, MediaTypeNames.Application.FormUrlEncoded);
@@ -79,7 +81,7 @@ namespace eFaktureModel.ApiServices.Util
 
         public async Task<T> GetResult()
         {
-            var response = await httpClient.GetAsync(_uriBuilder.ToString());
+            var response = await _httpClient.GetAsync(_uriBuilder.ToString());
        
             T result = await GetHttpResult(response); 
 
@@ -99,7 +101,7 @@ namespace eFaktureModel.ApiServices.Util
 
         public async Task<T?> PostResult()
         {
-            var response = await httpClient.PostAsync(_uriBuilder.ToString(), _httpContent);
+            var response = await _httpClient.PostAsync(_uriBuilder.ToString(), _httpContent);
 
             T result = await GetHttpResult(response);
 
@@ -114,6 +116,11 @@ namespace eFaktureModel.ApiServices.Util
                 if (disposing)
                 {
                     // TODO: dispose managed state (managed objects)
+                    _httpClient.Dispose();
+
+                    this._httpContent = null;
+                    this._queryParams = null;   
+                    this._uriBuilder = null;    
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override finalizer
@@ -135,5 +142,16 @@ namespace eFaktureModel.ApiServices.Util
             Dispose(disposing: true);
             GC.SuppressFinalize(this);
         }
+
+        public IHttpClientBuilder<T> AddHttpContentText(string data, Encoding encoding)
+        {
+            var stringContent = new StringContent(data, encoding, "application/xml");
+
+            _httpContent = stringContent;   
+
+            return this;
+        }
+
+
     }
 }
