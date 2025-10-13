@@ -39,7 +39,7 @@ namespace eFaktureManagement.ApiServices
                 var request = new SaleChangeRequest { date = date };
 
                 httpClient.AddHttpContentBody(request).AddPath(PathsConfirguration[EApiPaths.CHANGES]);
-                List<C>? list = await httpClient.PostResult();
+                List<C>? list = (await httpClient.PostResult()).Result;
 
                 return list ?? new();
             }
@@ -65,7 +65,7 @@ namespace eFaktureManagement.ApiServices
 
 
 
-                return elem;
+                return elem.Result;
             }
         }
 
@@ -80,33 +80,46 @@ namespace eFaktureManagement.ApiServices
 
                 var elem = await httpClient.GetResult();
 
-                return elem;
+                return elem.Result;
             }
         }
 
-        public bool GetSignature(string invoiceId)
+        public async Task<byte[]> DownloadSigned(long invoiceId)
         {
-            throw new NotImplementedException();
+            return await GetFileAsync(invoiceId, PathsConfirguration[EApiPaths.SIGNATURE_DOWNLOAD]);
         }
 
-        public Task<byte[]> GetXmlAsync(long invoiceId)
+        public async Task<byte[]> GetXmlAsync(long invoiceId)
         {
-            throw new NotImplementedException();
+            return await GetFileAsync(invoiceId, PathsConfirguration[EApiPaths.XML_DOWNLOAD]);
+      
         }
 
-        public bool VatReverseCarge(string invoiceId, double ammount)
+        public async Task<byte[]> GetPdfAsync(long invoiceId)
         {
-            throw new NotImplementedException();
+
+            return await GetFileAsync(invoiceId, PathsConfirguration[EApiPaths.PDF_DOWNLOAD]);  
+        
         }
 
-        public Task<byte[]> GetPdfAsync(long invoiceId)
+        private async Task<byte[]> GetFileAsync(long invoiceId, string path)
         {
-            throw new NotImplementedException();
+            using (var httpClient = new HttpClientBuilder<Stream>(configRoot))
+            {
+
+                httpClient.AddQueryItem("invoiceId", invoiceId.ToString()).AddPath(path);
+
+                using (var stream = await httpClient.GetStream())
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        await stream.CopyToAsync(ms);
+                        return ms.ToArray();
+                    }
+                }
+            }
         }
 
-        public Task<byte[]> DownloadSigned(long invoideId)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

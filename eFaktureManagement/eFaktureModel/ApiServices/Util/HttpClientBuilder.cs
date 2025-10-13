@@ -79,35 +79,54 @@ namespace eFaktureModel.ApiServices.Util
             return this;
         }
 
-        public async Task<T> GetResult()
+        public async Task<HttpClientResponse<T>> GetResult()
         {
             var response = await _httpClient.GetAsync(_uriBuilder.ToString());
-       
-            T result = await GetHttpResult(response); 
 
-            return result;  
+            var result = await GetHttpResult(response);
+
+            return result;
+        }
+        public async Task<Stream> GetStream()
+        {
+            var response = await _httpClient.GetAsync(_uriBuilder.ToString());
+
+            var stream = await response.Content.ReadAsStreamAsync();
+
+            return stream;
         }
 
-        private async Task<T> GetHttpResult(HttpResponseMessage response)
+        private async Task<HttpClientResponse<T?>> GetHttpResult(HttpResponseMessage response)
         {
             var responseBody = await response.Content.ReadAsStringAsync();
 
             T? resultingInvoice =
              JsonSerializer.Deserialize<T?>(responseBody);
 
-
-            return resultingInvoice;
-        }
-
-        public async Task<T?> PostResult()
-        {
-            var response = await _httpClient.PostAsync(_uriBuilder.ToString(), _httpContent);
-
-            T result = await GetHttpResult(response);
+            var result = new HttpClientResponse<T?>
+            {
+                StatusCode = response.StatusCode,
+                Result= resultingInvoice,   
+            };  
 
             return result;
         }
+        public async Task<HttpClientResponse<T?>> DeleteResult()
+        {
+            var response = await _httpClient.DeleteAsync(_uriBuilder.ToString());
 
+            var result = await GetHttpResult(response);
+
+            return result;
+        }
+        public async Task<HttpClientResponse<T?>> PostResult()
+        {
+            var response = await _httpClient.PostAsync(_uriBuilder.ToString(), _httpContent);
+
+            var result = await GetHttpResult(response);
+
+            return result;
+        }
 
         protected virtual void Dispose(bool disposing)
         {
@@ -152,6 +171,11 @@ namespace eFaktureModel.ApiServices.Util
             return this;
         }
 
+        public IHttpClientBuilder<T> AddPathParam(long invoiceId)
+        {
+            _uriBuilder.Path = Path.Combine(_uriBuilder.Path, invoiceId.ToString());    
 
+            return this;
+        }
     }
 }

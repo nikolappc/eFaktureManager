@@ -31,7 +31,7 @@ namespace eFaktureModel.Api.Models
         /// </summary>
 
         [DataMember(Name = "invoiceId")]
-        public int? InvoiceId { get; set; }
+        public long? InvoiceId { get; set; }
 
         /// <summary>
         /// Gets or Sets Accepted

@@ -5,11 +5,10 @@ namespace eFaktureManagement.ApiServices
 {
     public interface IApiPurchaseService
     {
-        Task<AcceptRejectResponse?> AcceptPurchaseInvoiceAsync(int invoiceId, string comment);
-        Task<AcceptRejectResponse?> RejectPurchaseInvoiceAsync(int invoiceId, string comment);
-        bool GetSignature(string invoiceId);
+        Task<AcceptRejectResponse?> AcceptPurchaseInvoiceAsync(long invoiceId, string comment);
+        Task<AcceptRejectResponse?> RejectPurchaseInvoiceAsync(long invoiceId, string comment);
 
-        bool VatReverseCarge(string invoiceId, double ammount);
+        Task<bool> VatReverseCarge(long invoiceId, double ammount);
 
 
         //TODO

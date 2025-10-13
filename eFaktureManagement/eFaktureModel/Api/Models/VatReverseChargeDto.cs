@@ -31,7 +31,7 @@ namespace eFaktureModel.Api.Models
         /// </summary>
 
         [DataMember(Name = "purchaseInvoiceId")]
-        public int? PurchaseInvoiceId { get; set; }
+        public long? PurchaseInvoiceId { get; set; }
 
         /// <summary>
         /// Gets or Sets VatAmount

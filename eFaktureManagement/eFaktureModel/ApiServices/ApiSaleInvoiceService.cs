@@ -25,14 +25,58 @@ namespace eFaktureManagement.ApiServices
         {
         }
 
-        public Task<InvoiceDto> CancelDraft(long invoideId, string cancelComment)
+        public async Task<InvoiceDto?> CancelDraft(long invoideId, string cancelComment)
         {
-            throw new NotImplementedException();
+            using (var httpClient = new HttpClientBuilder<InvoiceDto?>(configRoot))
+            {
+
+                var body = new CancelInvoiceMessageDto
+                {
+                    InvoiceId = invoideId,
+                    CancelComments = cancelComment
+                };  
+
+                httpClient
+
+                    .AddPath(PathsConfirguration[EApiPaths.CANCEL])
+                    .AddHttpContentBody(body);
+
+                var response = await httpClient.PostResult();
+
+                return response.Result;
+            }
         }
 
-        public Task DeleteDraft(long invoideId)
+        public async Task<long?> DeleteDraft(long invoiceId)
         {
-            throw new NotImplementedException();
+            using (var httpClient = new HttpClientBuilder<long?>(configRoot))
+            {
+
+                httpClient
+
+                    .AddPath(PathsConfirguration[EApiPaths.SINGLE])
+                    .AddPathParam(invoiceId);
+
+                var response = await httpClient.DeleteResult();
+
+                return response.Result;
+            }
+        }
+
+        public async Task<List<long>?> DeleteDrafts(List<long> invoiceIds)
+        {
+            using (var httpClient = new HttpClientBuilder<List<long>?>(configRoot))
+            {
+
+                httpClient
+
+                    .AddPath(PathsConfirguration[EApiPaths.SINGLE])
+                    .AddHttpContentBody(invoiceIds);
+
+                var response = await httpClient.DeleteResult();
+
+                return response.Result;
+            }
         }
 
         public async Task<ValueAddedTaxExemptionReasonDto?> GetValueAddedTaxExemptionReasonList()
@@ -45,7 +89,7 @@ namespace eFaktureManagement.ApiServices
 
                 var response = await httpClient.GetResult();
 
-                return response;
+                return response.Result;
             }
         }
 
@@ -66,14 +110,31 @@ namespace eFaktureManagement.ApiServices
 
                 var response = await httpClient.PostResult();
 
-                return response;
+                return response.Result;
             }
         }
 
-        public Task<InvoiceDto> Storno(long invoideId, string stornoNumber, string stornoComment)
+        public async Task<InvoiceDto?> Storno(long invoideId, string stornoNumber, string stornoComment)
         {
-            throw new NotImplementedException();
+            using (var httpClient = new HttpClientBuilder<InvoiceDto?>(configRoot))
+            {
+                var body = new StornoInvoiceMessageDto
+                {
+                    InvoiceId = invoideId,
+                    StornoComment = stornoComment,
+                    StornoNumber = stornoNumber
+                };  
+                httpClient
+                    .AddPath(PathsConfirguration[EApiPaths.STORNO])
+                    .AddHttpContentBody(body);
+
+                var response = await httpClient.PostResult();
+
+                return response.Result;
+            }
         }
+
+
 
         public async Task<MiniInvoiceDto?> UploadUbl(string requestId, bool sendToCir, bool executeValidation, byte[] xml)
         {
@@ -98,7 +159,7 @@ namespace eFaktureManagement.ApiServices
                 var response = await httpClient.PostResult();
 
 
-                return response;
+                return response.Result  ;
             }
         }
     }

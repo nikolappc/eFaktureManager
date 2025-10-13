@@ -16,5 +16,11 @@ namespace eFaktureModel.Enums
              UBL,
              VAT_EXEMPTIONS,
         UBL_UPLOAD,
+        XML_DOWNLOAD,
+        PDF_DOWNLOAD,
+        SIGNATURE_DOWNLOAD,
+        VAT_REV_CHRG,
+        STORNO,
+        CANCEL,
     }
 }

@@ -26,8 +26,10 @@ namespace eFaktureModel.ApiServices.Util
 
         IHttpClientBuilder<T> AddQueryParams(Dictionary<string, string?> keyValues);
         IHttpClientBuilder<T> AddHttpContentBody(object requestBody);
-        Task<T> GetResult();
-        Task<T?> PostResult();
+        Task<HttpClientResponse<T?>> GetResult();
+        Task<HttpClientResponse<T?>> PostResult();
+        Task<HttpClientResponse<T?>> DeleteResult();
 
+        IHttpClientBuilder<T> AddPathParam(long invoiceId);
     }
 }

@@ -1,6 +1,8 @@
 ﻿using eFaktureManagement.ApiModels.Purchase;
 using eFaktureModel.Api.Models;
 using eFaktureModel.ApiModels.Sale;
+using eFaktureModel.ApiServices.Util;
+using eFaktureModel.Enums;
 using eFaktureSync.ApiServices;
 using Microsoft.Extensions.Configuration;
 using System.Net.Mime;
@@ -14,14 +16,14 @@ namespace eFaktureManagement.ApiServices
 {
     public class ApiPurchaseInvoiceService : ApiGenericInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto>, IApiPurchaseService
     {
-        public ApiPurchaseInvoiceService(IConfiguration configRoot) : base(configRoot, ApiConstants.PURCHASE_SINGLE,ApiConstants.PURCHASE_CHANGES)
+        public ApiPurchaseInvoiceService(IConfiguration configRoot) : base(configRoot, PurchaseApiPaths.Paths)
         {
         }
 
 
-        private async Task<AcceptRejectResponse?> AcceptRejectPurhcaseInvoiceAsync(int invoiceId, string comment, bool accepted)
+        private async Task<AcceptRejectResponse?> AcceptRejectPurhcaseInvoiceAsync(long invoiceId, string comment, bool accepted)
         {
-            using (var httpClient = new HttpClient())
+            using (var httpClient = new HttpClientBuilder<AcceptRejectResponse?>(configRoot))
             {
 
                 var request = new AcceptRejectPurchaseInvoice
@@ -30,35 +32,47 @@ namespace eFaktureManagement.ApiServices
                     InvoiceId = invoiceId,  
                     Comment = comment
                 };
-                var requestData = JsonSerializer.Serialize(request);
-                var requestContent = new StringContent(requestData, System.Text.Encoding.UTF8, MediaTypeNames.Application.FormUrlEncoded);
+                httpClient
+                    .AddPath(PurchaseApiPaths.Paths[EApiPaths.PURCHASE_ACCEPT_REJECT])
+                    .AddHttpContentBody(request);
 
+                var response = await httpClient.PostResult();
 
-
-                var response = await httpClient.PostAsync(configRoot[ApiConstants.API_ROOT] + ApiConstants.PURCHASE_ACCEPT_REJECT, requestContent);
-
-                // Read the response
-                var responseBody = await response.Content.ReadAsStringAsync();
-
-                AcceptRejectResponse? elem = JsonSerializer.Deserialize<AcceptRejectResponse?>(responseBody);
-
-
-                return elem;
+             
+                return response.Result;
             }
         }
 
-        public async Task<AcceptRejectResponse?> AcceptPurchaseInvoiceAsync(int invoiceId, string comment)
+        public async Task<AcceptRejectResponse?> AcceptPurchaseInvoiceAsync(long invoiceId, string comment)
         {
             return await AcceptRejectPurhcaseInvoiceAsync( invoiceId, comment, true);
         }
 
 
-        public async Task<AcceptRejectResponse?> RejectPurchaseInvoiceAsync(int invoiceId, string comment)
+        public async Task<AcceptRejectResponse?> RejectPurchaseInvoiceAsync(long invoiceId, string comment)
         {
-    
-
             return await AcceptRejectPurhcaseInvoiceAsync(invoiceId, comment, false);
         }
 
+        public async Task<bool> VatReverseCarge(long invoiceId, double ammount)
+        {
+            using (var httpClient = new HttpClientBuilder(configRoot))
+            {
+
+                var request = new VatReverseChargeDto
+                {
+                    PurchaseInvoiceId=invoiceId,
+                    VatAmount = ammount
+                };
+                httpClient
+                    .AddPath(PurchaseApiPaths.Paths[EApiPaths.VAT_REV_CHRG])
+                    .AddHttpContentBody(request);
+
+                var response = await httpClient.PostResult();
+
+
+                return response.StatusCode == System.Net.HttpStatusCode.OK;
+            }
+        }
     }
 }
