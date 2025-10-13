@@ -19,7 +19,7 @@ namespace eFaktureModel.Model.Reference
         public DateTime? UpdatedAt { get; set; } = DateTime.Now;
         public InvoiceWorkStatus InvoiceWorkStatus { get; set; }
 
-        public IdentityUser  user { get; set; }
+        public IdentityUser  User { get; set; }
 
     }
 }
