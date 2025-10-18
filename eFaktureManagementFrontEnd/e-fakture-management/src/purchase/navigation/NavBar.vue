@@ -3,13 +3,13 @@
 import { defineProps, defineEmits, computed } from 'vue';
 
 const props = defineProps({
-  modelValue: String
+    modelValue: String
 });
 const emit = defineEmits(['update:modelValue']);
 
 const localValue = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+    get: () => props.modelValue,
+    set: (val) => emit('update:modelValue', val)
 });
 
 </script>
@@ -21,7 +21,9 @@ const localValue = computed({
                 <template v-slot:activator="{ props }">
                     <v-list-item v-bind="props" title="Lanac snabdevanja"></v-list-item>
                 </template>
-                <v-list-item title="Dodela"></v-list-item>
+                <router-link to="/purchase/unassigned">
+                    <v-list-item title="Dodela"></v-list-item>
+                </router-link>
                 <v-list-item title="Dodeljene fakture"></v-list-item>
                 <v-list-item title="Fakture koje nisu za knjizenje"></v-list-item>
             </v-list-group>

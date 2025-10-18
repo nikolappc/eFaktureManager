@@ -1,5 +1,9 @@
 
 <script>
+import { useRouter } from 'vue-router';
+
+    const router = useRouter();
+
 export default {
   props: {
     modelValue: Boolean
@@ -8,8 +12,24 @@ export default {
     toggle() {
       this.$emit('update:modelValue', !this.modelValue)
     }
+  },
+  data() {
+    return {
+      sales:false
+    };
+  },
+  mounted() {
+    console.log(this.mode);
+  },
+  salesChanged(val){
+      if(val){
+        router.push('/purchase/unassigned');
+      }else{
+        router.push('/sales/my-created'); 
+      }
   }
-}
+
+};
 </script>
 
 <template>
@@ -31,7 +51,7 @@ export default {
       <span>
         Purchase
       </span>
-      <v-switch label="Sale"></v-switch>
+      <v-switch v-model="this.sales" @update:valueModel="this.salesChanged" label="Sale"></v-switch>
 
 
       <router-link to="/login">

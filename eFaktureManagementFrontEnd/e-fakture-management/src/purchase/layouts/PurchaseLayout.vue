@@ -1,8 +1,8 @@
 <script setup>
 import AppHeader from '@/components/navigation/AppHeader.vue';
-import NavBar from '@/components/navigation/NavBar.vue';
 
 import { ref } from 'vue'
+import NavBar from '../navigation/NavBar.vue';
 
 var sidebar =ref(false);
 </script>

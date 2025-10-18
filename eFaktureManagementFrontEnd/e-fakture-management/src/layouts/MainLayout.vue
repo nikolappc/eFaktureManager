@@ -1,12 +1,20 @@
 <script setup>
+import AppHeader from '@/components/navigation/AppHeader.vue';
 
+import { ref } from 'vue'
 
+var sidebar =ref(false);
 </script>
 
 <template>
-    <div class="bg-lime-lighten-3 h-screen w-screen d-flex justify-center align-center">
+    <AppHeader v-model="sidebar"></AppHeader>
+
+    <v-main app>
         <slot></slot>
-    </div>
+    </v-main>
+    <v-footer app>
+        eFaktureManagement © 2025
+    </v-footer>
 </template>
 
 <style lang="scss"></style>

@@ -1,6 +1,10 @@
 <script>
 import { computed, defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
+import SalesLayout from './sales/layouts/SalesLayout.vue';
+import LoginLayout from './layouts/LoginLayout.vue';
+import MainLayout from './layouts/MainLayout.vue';
+import PurchaseLayout from './purchase/layouts/PurchaseLayout.vue';
 
 // Dynamically require all layouts from the layouts folder (Webpack feature)
 
@@ -10,26 +14,18 @@ export default {
 
   setup() {
     var layoutMaps = {
-      "SalesLayout": "@/sales/layouts/SalesLayout.vue",
-      "PurchaseLayout": "@/purchase/layouts/PurchaseLayout.vue",
-      "LoginLayout": "@/layouts/LoginLayout.vue",
-      "MainLayout": "@/layouts/LoginLayout.vue"
+      "SalesLayout": SalesLayout,
+      "PurchaseLayout": PurchaseLayout,
+      "LoginLayout": LoginLayout,
+      "MainLayout": MainLayout
     }
     const route = useRoute()
 
-    const currentLayout = computed(() => {
-      const layoutName = (route.meta && route.meta.layout) || 'MainLayout'
-
-      let loader;
-
-      if (layoutMaps.keys().includes(layoutName)) {
-        loader = () => import(layoutMaps[layoutName])
-      } else {
-        loader = () => import(layoutMaps["LoginLayout"])
-      }
-
-      return defineAsyncComponent(loader)
+      const currentLayout = computed(() => {
+      const layoutName = route.meta?.layout || 'MainLayout'
+      return layoutMaps[layoutName] || LoginLayout
     })
+
 
     return { currentLayout }
   },
