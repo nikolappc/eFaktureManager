@@ -28,6 +28,12 @@ export default {
         <v-btn><v-icon icon="mdi-information-slab-circle-outline"></v-icon>About
         </v-btn>
       </router-link>
+      <span>
+        Purchase
+      </span>
+      <v-switch label="Sale"></v-switch>
+
+
       <router-link to="/login">
         <v-btn><v-icon icon="mdi-login"></v-icon>Log in
         </v-btn>

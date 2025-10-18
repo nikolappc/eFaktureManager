@@ -3,22 +3,29 @@ import { computed, defineAsyncComponent } from 'vue'
 import { useRoute } from 'vue-router'
 
 // Dynamically require all layouts from the layouts folder (Webpack feature)
-const layoutContext = require.context('@/layouts', false, /\.vue$/)
 
 export default {
+
+
+
   setup() {
+    var layoutMaps = {
+      "SalesLayout": "@/sales/layouts/SalesLayout.vue",
+      "PurchaseLayout": "@/purchase/layouts/PurchaseLayout.vue",
+      "LoginLayout": "@/layouts/LoginLayout.vue",
+      "MainLayout": "@/layouts/LoginLayout.vue"
+    }
     const route = useRoute()
 
     const currentLayout = computed(() => {
       const layoutName = (route.meta && route.meta.layout) || 'MainLayout'
-      const layoutPath = `./${layoutName}.vue`
 
-      let loader
+      let loader;
 
-      if (layoutContext.keys().includes(layoutPath)) {
-        loader = () => Promise.resolve(layoutContext(layoutPath))
+      if (layoutMaps.keys().includes(layoutName)) {
+        loader = () => import(layoutMaps[layoutName])
       } else {
-        loader = () => Promise.resolve(layoutContext('./MainLayout.vue'))
+        loader = () => import(layoutMaps["LoginLayout"])
       }
 
       return defineAsyncComponent(loader)
@@ -32,9 +39,9 @@ export default {
 <template>
   <v-app>
 
-      <component :is="currentLayout">
-        <router-view />
-      </component>
+    <component :is="currentLayout">
+      <router-view />
+    </component>
 
   </v-app>
 </template>
