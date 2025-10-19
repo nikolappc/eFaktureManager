@@ -3,13 +3,13 @@
 import { defineProps, defineEmits, computed } from 'vue';
 
 const props = defineProps({
-  modelValue: String
+    modelValue: String
 });
 const emit = defineEmits(['update:modelValue']);
 
 const localValue = computed({
-  get: () => props.modelValue,
-  set: (val) => emit('update:modelValue', val)
+    get: () => props.modelValue,
+    set: (val) => emit('update:modelValue', val)
 });
 
 </script>
@@ -17,29 +17,21 @@ const localValue = computed({
     <v-navigation-drawer v-model="localValue" :order="1" app>
         <v-list>
 
-            <v-list-group value="Lanac snabdevanja">
+            <v-list-group value="Nove fakture">
                 <template v-slot:activator="{ props }">
-                    <v-list-item v-bind="props" title="Lanac snabdevanja"></v-list-item>
+                    <v-list-item v-bind="props" title="Nove fakture"></v-list-item>
                 </template>
-                <v-list-item title="Dodela"></v-list-item>
-                <v-list-item title="Dodeljene fakture"></v-list-item>
-                <v-list-item title="Fakture koje nisu za knjizenje"></v-list-item>
+                <v-list-item title="Kreiraj fakturu"></v-list-item>
+                <v-list-item title="Skice"></v-list-item>
             </v-list-group>
 
-            <v-list-group value="Odobravanje">
+            <v-list-group value="Upravljanje">
                 <template v-slot:activator="{ props }">
-                    <v-list-item v-bind="props" title="Odobravanje"></v-list-item>
+                    <v-list-item v-bind="props" title="Upravljanje"></v-list-item>
                 </template>
                 <v-list-item title="Moje fakture"></v-list-item>
             </v-list-group>
-
-            <v-list-group value="Knjizenje">
-                <template v-slot:activator="{ props }">
-                    <v-list-item v-bind="props" title="Knjizenje"></v-list-item>
-                </template>
-                <v-list-item title="Moje fakture na knjizenju"></v-list-item>
-                <v-list-item title="Proknjizene fakture"></v-list-item>
-            </v-list-group>
+            <v-list-item title="Greške"></v-list-item>
         </v-list>
     </v-navigation-drawer>
 </template>

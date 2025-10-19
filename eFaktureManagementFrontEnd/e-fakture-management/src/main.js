@@ -12,6 +12,7 @@ import "./assets/output.css";
 const vuetify = createVuetify({
     components,
     directives,
+    
     icons: {
         defaultSet: 'mdi',
         aliases,

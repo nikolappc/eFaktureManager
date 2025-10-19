@@ -14,14 +14,18 @@
       <v-table striped="even" height="100%" fixed-header>
         <thead>
           <tr>
-            <th class="text-left">Name</th>
-            <th class="text-left">Calories</th>
+            <th class="text-left">Id</th>
+            <th class="text-left">Dobavljač</th>
+            <th class="text-left">Status</th>
+            <th class="text-left">Download</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in modelValue" :key="item.name">
-            <td>{{ item.name }}</td>
-            <td>{{ item.calories }}</td>
+          <tr v-for="item in modelValue" :key="item.id">
+            <td>{{ item.id }}</td>
+            <td>{{ item.vendor }}</td>
+            <td>{{ item.status }}</td>
+            <td><v-btn><v-icon  icon="mdi-file-pdf-box"></v-icon></v-btn><v-btn><v-icon icon="mdi-file-xml-box"></v-icon ></v-btn></td>
           </tr>
         </tbody>
       </v-table>
@@ -39,6 +43,7 @@
 import { shallowRef, computed, watch } from 'vue'
 
 export default {
+  name:"PagingTable",
   props: {
     modelValue: Array,
     totalPages: Number,
