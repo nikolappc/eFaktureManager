@@ -1,5 +1,5 @@
-﻿using eFaktureManagement.Filters;
-using eFaktureManagement.Models.Repository.Scrap;
+﻿using eFaktureManagement.Dto.Repository.Scrap;
+using eFaktureManagement.Filters;
 using eFaktureManagement.Services.Paging;
 using System;
 using System.Collections.Generic;

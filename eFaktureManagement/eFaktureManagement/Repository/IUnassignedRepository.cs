@@ -1,5 +1,6 @@
-﻿using eFaktureManagement.Dto.Unassigned;
-using eFaktureManagement.Models.Repository;
+﻿using eFaktureManagement.Dto.Repository;
+using eFaktureManagement.Dto.Repository.Booking;
+using eFaktureManagement.Dto.Unassigned;
 
 namespace eFaktureManagement.Repository
 {
