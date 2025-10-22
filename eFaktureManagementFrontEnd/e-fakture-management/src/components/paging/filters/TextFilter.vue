@@ -17,10 +17,6 @@ export default {
 
   methods:{
 
-    return{
-
-
-    }
   },
   setup(props, { emit }) {
     const text = computed({
@@ -28,19 +24,7 @@ export default {
       set: (val) => emit('updatePage', val)
     })
 
-    const pageSizeSelect = shallowRef({ title: '25 per page', size: 25 })
 
-    const pageSizeOptions = [
-      { title: '10 per page', size: 10 },
-      { title: '25 per page', size: 25 },
-      { title: '50 per page', size: 50 },
-      { title: '100 per page', size: 100 },
-      { title: '200 per page', size: 200 }
-    ]
-
-    watch(pageSizeSelect, (val) => {
-      emit('updatePageSize', val.size)
-    })
 
     return {
       pageValue,
