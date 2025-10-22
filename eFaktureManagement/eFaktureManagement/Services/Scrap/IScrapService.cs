@@ -1,4 +1,4 @@
-﻿using eFaktureManagement.Dto.Repository.Scrap;
+﻿using eFaktureManagement.Dto.Purchase.Scrap;
 using eFaktureManagement.Filters;
 using eFaktureManagement.Services.Paging;
 using System;

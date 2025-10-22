@@ -1,4 +1,5 @@
 ﻿using eFaktureManagement.Data;
+using eFaktureManagement.Dto.Purchase.Booking;
 using eFaktureManagement.Dto.Unassigned;
 using eFaktureManagement.Filters;
 using eFaktureManagement.Paging;
@@ -6,16 +7,16 @@ using eFaktureManagement.Services.Paging;
 
 namespace eFaktureManagement.Services.Unassigned
 {
-    public class UnassignedPagingService : AbstractBasePagingService<UnassignedFilter, UnassignedPageItem>
+    public class BookingPagingService : AbstractBasePagingService<BookingFilter, BookingPageItem>
     {
         eFaktureContext _context;
 
-        public UnassignedPagingService(eFaktureContext context)
+        public BookingPagingService(eFaktureContext context)
         {
             _context = context;
         }
 
-        public override IQueryable<UnassignedPageItem> Query(int pageNumber, int pageSize, UnassignedFilter? filter = null, Sorting? s = null)
+        public override IQueryable<BookingPageItem> Query(int pageNumber, int pageSize, BookingFilter? filter = null, Sorting? s = null)
         {
             var items = (
                 from inv in _context.PurchaseInvoices
@@ -28,7 +29,7 @@ namespace eFaktureManagement.Services.Unassigned
                 where (filter == null || (inv.LastModifiedUtc >= filter.StartDate && inv.LastModifiedUtc <= filter.EndDate && u.UserName == filter.UserName))
                 where ua == null
 
-                select new UnassignedPageItem
+                select new BookingPageItem
                 {
                     InvoiceId = inv.InvoiceId,
                     LastModifiedUtc = inv.LastModifiedUtc,
@@ -39,7 +40,7 @@ namespace eFaktureManagement.Services.Unassigned
             return items;
         }
 
-        public async override Task<IQueryable<UnassignedPageItem>> QueryAsync(int pageNumber, int pageSize, UnassignedFilter? f = null, Sorting? s = null)
+        public async override Task<IQueryable<BookingPageItem>> QueryAsync(int pageNumber, int pageSize, BookingFilter? f = null, Sorting? s = null)
         {
             return Query(pageNumber, pageSize, f, s);    
         }

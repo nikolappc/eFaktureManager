@@ -11,9 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="XmlFiles\ubl2.1.xsd">
+    <Resource Include="XmlFiles\ubl2.1.xsd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>

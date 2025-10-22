@@ -1,6 +1,6 @@
 ﻿namespace eFaktureManagement.Filters
 {
-    public interface BookingFilter
+    public class BookingFilter
     {
     }
 }
