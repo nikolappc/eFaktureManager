@@ -31,9 +31,9 @@ namespace eFaktureManagement.Services.Unassigned
 
                 select new BookingPageItem
                 {
-                    InvoiceId = inv.InvoiceId,
-                    LastModifiedUtc = inv.LastModifiedUtc,
-                    Status = inv.Status,
+                    //InvoiceId = inv.InvoiceId,
+                    //LastModifiedUtc = inv.LastModifiedUtc,
+                    //Status = inv.Status,
                 }
                 );
 

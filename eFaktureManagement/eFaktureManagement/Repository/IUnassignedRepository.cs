@@ -1,5 +1,5 @@
-﻿using eFaktureManagement.Dto.Repository;
-using eFaktureManagement.Dto.Repository.Booking;
+﻿
+using eFaktureManagement.Dto.Unassigned;
 using eFaktureManagement.Filters;
 
 namespace eFaktureManagement.Repository

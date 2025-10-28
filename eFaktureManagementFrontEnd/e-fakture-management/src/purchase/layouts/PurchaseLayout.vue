@@ -2,7 +2,7 @@
 import AppHeader from '@/components/navigation/AppHeader.vue';
 
 import { ref } from 'vue'
-import NavBar from '../navigation/NavBar.vue';
+import NavBar from '../navigation/PurchaseNavBar.vue';
 
 var sidebar =ref(false);
 </script>
@@ -14,9 +14,6 @@ var sidebar =ref(false);
     <v-main app>
         <slot></slot>
     </v-main>
-    <v-footer app>
-        eFaktureManagement © 2025
-    </v-footer>
 </template>
 
 <style lang="scss"></style>

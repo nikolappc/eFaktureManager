@@ -12,9 +12,6 @@ var sidebar =ref(false);
     <v-main app>
         <slot></slot>
     </v-main>
-    <v-footer app>
-        eFaktureManagement © 2025
-    </v-footer>
 </template>
 
 <style lang="scss"></style>

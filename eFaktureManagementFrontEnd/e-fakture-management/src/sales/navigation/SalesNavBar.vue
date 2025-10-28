@@ -1,6 +1,8 @@
 <script setup>
 
-import { defineProps, defineEmits, computed } from 'vue';
+import NavBar from '@/components/navigation/NavBar.vue';
+import { defineProps, defineEmits, computed, ref} from 'vue';
+
 
 const props = defineProps({
     modelValue: String
@@ -12,26 +14,30 @@ const localValue = computed({
     set: (val) => emit('update:modelValue', val)
 });
 
+const navigationItems = ref([
+  {
+    title: "Nove fakture",
+    icon: "mdi-file-document-outline",
+    items: [
+      { title: "Kreiraj fakturu", icon: "mdi-file-plus-outline", to: '/sales/create'},
+      { title: "Skice", icon: "mdi-file-edit-outline" }
+    ]
+  },
+  {
+    title: "Upravljanje",
+    icon: "mdi-cog-outline",
+    items: [
+      { title: "Moje fakture", icon: "mdi-file-account-outline", to:"/sales/my-created"}
+    ]
+  },
+  {
+    title: "Greške",
+    icon: "mdi-alert-circle-outline",
+  }
+]);
+
 </script>
 <template>
-    <v-navigation-drawer v-model="localValue" :order="1" app>
-        <v-list>
+   <NavBar v-model="localValue" :navigationGroups="navigationItems"></NavBar>
 
-            <v-list-group value="Nove fakture">
-                <template v-slot:activator="{ props }">
-                    <v-list-item v-bind="props" title="Nove fakture"></v-list-item>
-                </template>
-                <v-list-item title="Kreiraj fakturu"></v-list-item>
-                <v-list-item title="Skice"></v-list-item>
-            </v-list-group>
-
-            <v-list-group value="Upravljanje">
-                <template v-slot:activator="{ props }">
-                    <v-list-item v-bind="props" title="Upravljanje"></v-list-item>
-                </template>
-                <v-list-item title="Moje fakture"></v-list-item>
-            </v-list-group>
-            <v-list-item title="Greške"></v-list-item>
-        </v-list>
-    </v-navigation-drawer>
 </template>

@@ -38,6 +38,9 @@ export default {
     <component :is="currentLayout">
       <router-view />
     </component>
+     <v-footer app class="bg-grey-lighten-2 text-caption py-1">
+        eFaktureManagement © 2025
+    </v-footer>
 
   </v-app>
 </template>
