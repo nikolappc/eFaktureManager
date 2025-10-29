@@ -1,4 +1,5 @@
-﻿using eFaktureModel.Model.Purchase;
+﻿using eFaktureModel.Model.Company;
+using eFaktureModel.Model.Purchase;
 using eFaktureModel.Model.Reference;
 using eFaktureModel.Model.Sales;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -13,6 +14,7 @@ namespace eFaktureManagement.Data
         {
         }
 
+        public DbSet<RegisteredCompany> RegisteredCompanies { get; set; }
 
         public DbSet<UserInvoice> UserInvoices { get; set; }
         public DbSet<PurchaseInvoice> PurchaseInvoices { get; set; }

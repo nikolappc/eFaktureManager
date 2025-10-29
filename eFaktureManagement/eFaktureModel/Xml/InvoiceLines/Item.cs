@@ -1,5 +1,4 @@
-﻿using eFaktureModel.Xml.InvoiceLine;
-using eFaktureModel.Xml.References;
+﻿using eFaktureModel.Xml.References;
 using eFaktureModel.Xml.Utility;
 using System;
 using System.Collections.Generic;

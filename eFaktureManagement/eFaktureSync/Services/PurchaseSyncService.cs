@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace eFaktureSync.Services
 {
-    public class PurchaseSyncService : SyncService<SimplePurchaseInvoiceDto, PurchaseInvoiceStatusChangeDto>
+    public class PurchaseSyncService : InvoiceSyncService<SimplePurchaseInvoiceDto, PurchaseInvoiceStatusChangeDto>
     {
         private eFaktureContext _context;
 

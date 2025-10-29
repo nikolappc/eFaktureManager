@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
 
-namespace eFaktureModel.Xml.InvoiceLine
+namespace eFaktureModel.Xml.InvoiceLines
 {
     public class ItemClassification
     {

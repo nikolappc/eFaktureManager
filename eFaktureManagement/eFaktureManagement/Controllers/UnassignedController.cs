@@ -1,5 +1,6 @@
 ﻿using eFaktureManagement.Dto;
 using eFaktureManagement.Dto.Unassigned;
+using eFaktureManagement.Filters;
 using eFaktureManagement.Paging;
 using eFaktureManagement.Services.Paging;
 using Microsoft.AspNetCore.Http;
@@ -13,9 +14,9 @@ namespace eFaktureManagement.Controllers
     {
 
         
-        IPagingService<UnassignedInvoiceFilter, UnassignedInvoiceDto> _pagingService;
+        IPagingService<UnassignedFilter, UnassignedInvoiceDto> _pagingService;
         ILogger<UnassignedController> _logger;
-        public UnassignedController(IPagingService<UnassignedInvoiceFilter, UnassignedInvoiceDto> pagingService, ILogger<UnassignedController> logger)
+        public UnassignedController(IPagingService<UnassignedFilter, UnassignedInvoiceDto> pagingService, ILogger<UnassignedController> logger)
         {
             _pagingService = pagingService;
             _logger = logger;
@@ -29,7 +30,7 @@ namespace eFaktureManagement.Controllers
         }
              
         [HttpPost]
-        public async Task<Page<UnassignedInvoiceDto>> UnassignedPaging([FromBody]PageRequest<UnassignedInvoiceDto, UnassignedInvoiceFilter> pageRequest)
+        public async Task<Page<UnassignedInvoiceDto>> UnassignedPaging([FromBody]PageRequest<UnassignedInvoiceDto, UnassignedFilter> pageRequest)
         {
             try
             {

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace eFaktureSync.Services
 {
-    public class SalesSyncService : SyncService<SimpleSalesInvoiceDto, SalesInvoiceStatusChangeDto>
+    public class SalesSyncService : InvoiceSyncService<SimpleSalesInvoiceDto, SalesInvoiceStatusChangeDto>
     {
 
         private readonly ILogger<PurchaseSyncService> logger;
