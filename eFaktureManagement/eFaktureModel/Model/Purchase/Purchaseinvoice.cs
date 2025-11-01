@@ -1,4 +1,4 @@
-﻿using eFaktureModel.Api.Models;
+﻿using eFaktureModel.Api.Models.Purchase;
 using eFaktureModel.Model.Sales;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace eFaktureModel.Model.Purchase
     public class PurchaseInvoice : Invoice
     {
 
-        public eFaktureModel.Api.Models.PurchaseInvoiceStatus Status { get; set; }
+        public PurchaseInvoiceStatus Status { get; set; }
 
 
     }

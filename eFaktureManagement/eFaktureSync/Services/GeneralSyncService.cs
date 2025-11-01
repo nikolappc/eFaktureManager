@@ -1,5 +1,5 @@
 ﻿using eFaktureManagement.Data;
-using eFaktureModel.Api.Models;
+using eFaktureModel.Api.Models.Company;
 using System;
 using System.Collections.Generic;
 using System.Linq;

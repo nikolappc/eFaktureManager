@@ -1,5 +1,5 @@
 ﻿using eFaktureManagement.ApiModels.Purchase;
-using eFaktureModel.Api.Models;
+using eFaktureModel.Api.Models.Purchase;
 using eFaktureModel.ApiModels.Sale;
 using eFaktureModel.ApiServices.Util;
 using eFaktureModel.Enums;
@@ -9,8 +9,8 @@ using System.Net.Mime;
 using System.Text.Json;
 using System.Web;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using AcceptRejectPurchaseInvoice = eFaktureModel.Api.Models.AcceptRejectPurchaseInvoice;
-using PurchaseInvoiceDto = eFaktureModel.Api.Models.PurchaseInvoiceDto;
+using AcceptRejectPurchaseInvoice = eFaktureModel.Api.Models.Purchase.AcceptRejectPurchaseInvoice;
+using PurchaseInvoiceDto = eFaktureModel.Api.Models.Purchase.PurchaseInvoiceDto;
 
 namespace eFaktureManagement.ApiServices
 {

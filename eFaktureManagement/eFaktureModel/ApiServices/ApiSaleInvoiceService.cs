@@ -2,6 +2,9 @@
 using eFaktureManagement.ApiModels.Purchase;
 using eFaktureManagement.ApiModels.Sale;
 using eFaktureModel.Api.Models;
+using eFaktureModel.Api.Models.Invoices;
+using eFaktureModel.Api.Models.Sales;
+using eFaktureModel.Api.Models.Vat;
 using eFaktureModel.ApiModels.Sale;
 using eFaktureModel.ApiServices.Util;
 using eFaktureModel.Enums;
@@ -14,7 +17,7 @@ using System.Text;
 using System.Text.Json;
 using System.Web;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using MiniInvoiceDto = eFaktureModel.Api.Models.MiniInvoiceDto;
+using MiniInvoiceDto = eFaktureModel.Api.Models.Invoices.MiniInvoiceDto;
 
 namespace eFaktureManagement.ApiServices
 {

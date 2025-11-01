@@ -1,7 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using eFaktureManagement.ApiServices;
 using eFaktureManagement.Data;
-using eFaktureModel.Api.Models;
+using eFaktureModel.Api.Models.Sales;
 using eFaktureSync.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -1,6 +1,5 @@
-﻿
-
-using eFaktureModel.Api.Models;
+﻿using eFaktureModel.Api.Models.Invoices;
+using eFaktureModel.Api.Models.Vat;
 
 namespace eFaktureManagement.ApiServices
 {

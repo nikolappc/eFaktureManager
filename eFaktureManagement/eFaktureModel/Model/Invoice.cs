@@ -1,4 +1,4 @@
-﻿using eFaktureModel.Api.Models;
+﻿using eFaktureModel.Api.Models.Cir;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -21,7 +21,7 @@ namespace eFaktureModel.Model
 
         public string? Comment { get; set; }
 
-        public eFaktureModel.Api.Models.CirInvoiceStatus CirStatus { get; set; }
+        public CirInvoiceStatus CirStatus { get; set; }
 
         public string CirInvoiceId { get; set; }
 

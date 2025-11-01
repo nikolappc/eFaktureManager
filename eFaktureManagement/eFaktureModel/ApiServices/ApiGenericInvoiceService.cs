@@ -1,6 +1,5 @@
 ﻿using eFaktureManagement.ApiModels;
 using eFaktureManagement.ApiModels.Purchase;
-using eFaktureModel.Api.Models;
 using eFaktureModel.ApiModels.Sale;
 using eFaktureModel.ApiServices.Util;
 using eFaktureModel.Enums;
@@ -11,7 +10,7 @@ using System.Net.Mime;
 using System.Text.Json;
 using System.Web;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using PurchaseInvoiceDto = eFaktureModel.Api.Models.PurchaseInvoiceDto;
+using PurchaseInvoiceDto = eFaktureModel.Api.Models.Purchase.PurchaseInvoiceDto;
 
 namespace eFaktureManagement.ApiServices
 {

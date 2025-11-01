@@ -1,4 +1,4 @@
-﻿using eFaktureModel.Api.Models;
+﻿using eFaktureModel.Api.Models.Sales;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,7 +14,7 @@ namespace eFaktureModel.Model.Sales
 
     public class SalesInvoice : Invoice
     {
-        public eFaktureModel.Api.Models.SalesInvoiceStatus Status { get; set; }
+        public SalesInvoiceStatus Status { get; set; }
 
 
 

@@ -1,4 +1,4 @@
-﻿using eFaktureModel.Api.Models;
+﻿using eFaktureModel.Api.Models.Invoices;
 using eFaktureModel.Xml;
 using XmlInvoice = eFaktureModel.Xml.Invoice;
 

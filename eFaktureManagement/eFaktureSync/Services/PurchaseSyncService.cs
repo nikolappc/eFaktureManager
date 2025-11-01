@@ -1,6 +1,6 @@
 ﻿using eFaktureManagement.ApiServices;
 using eFaktureManagement.Data;
-using eFaktureModel.Api.Models;
+using eFaktureModel.Api.Models.Purchase;
 using eFaktureModel.Model.Purchase;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;

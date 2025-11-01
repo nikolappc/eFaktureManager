@@ -1,5 +1,5 @@
 ﻿using eFaktureManagement.ApiServices;
-using eFaktureModel.Api.Models;
+using eFaktureModel.Api.Models.Invoices;
 
 namespace eFaktureManagement.Services.Sales
 {

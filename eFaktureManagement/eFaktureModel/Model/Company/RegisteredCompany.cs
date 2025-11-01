@@ -8,7 +8,6 @@ namespace eFaktureModel.Model.Company
 
         public string BugetCompanyNumber { get; set; }
 
-
         public string RegistrationCode { get; set; }
 
         public string VatRegistrationCode { get; set; }

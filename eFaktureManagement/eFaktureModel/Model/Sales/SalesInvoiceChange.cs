@@ -1,4 +1,4 @@
-﻿using eFaktureModel.Api.Models;
+﻿using eFaktureModel.Api.Models.Sales;
 using eFaktureModel.Model.Purchase;
 using System;
 using System.Collections.Generic;
