@@ -7,11 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureManagement", "eFakt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureApiDemo", "..\efaktureApiDemo\src\IO.Swagger\eFaktureApiDemo.csproj", "{9721A876-3229-4EE7-BE99-8A9F145E3001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFaktureSync", "eFaktureSync\eFaktureSync.csproj", "{38A02F0D-56B3-40A2-83BC-871F4458DC58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureSync", "eFaktureSync\eFaktureSync.csproj", "{38A02F0D-56B3-40A2-83BC-871F4458DC58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFaktureModel", "eFaktureModel\eFaktureModel.csproj", "{EC2751F4-365D-4F98-B412-D80077653C30}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureModel", "eFaktureModel\eFaktureModel.csproj", "{EC2751F4-365D-4F98-B412-D80077653C30}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFaktureManagementBase", "eFaktureManagementBase\eFaktureManagementBase.csproj", "{3DE4A096-A246-498F-A194-53749EEBAC0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureManagementBase", "eFaktureManagementBase\eFaktureManagementBase.csproj", "{3DE4A096-A246-498F-A194-53749EEBAC0D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "eFaktureFileArchive", "eFaktureFileArchive\eFaktureFileArchive.csproj", "{60FC2541-EF6D-4D0A-8577-6CE788501BB7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60FC2541-EF6D-4D0A-8577-6CE788501BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60FC2541-EF6D-4D0A-8577-6CE788501BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60FC2541-EF6D-4D0A-8577-6CE788501BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60FC2541-EF6D-4D0A-8577-6CE788501BB7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

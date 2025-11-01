@@ -99,6 +99,10 @@ namespace eFaktureSync.Services
                 }
 
 
+                var xml_bytes = await apiInvoiceService.GetXmlAsync(pair.Key);
+
+
+
                 var items = pair.Value;
                 foreach (var change in items)
                 {
