@@ -1,5 +1,6 @@
 ﻿using eFaktureManagement.ApiModels.Purchase;
 using eFaktureModel.Api.Models.Purchase;
+using eFaktureModel.Api.Models.Vat;
 using eFaktureModel.ApiModels.Sale;
 using eFaktureModel.ApiServices.Util;
 using eFaktureModel.Enums;

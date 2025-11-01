@@ -2,6 +2,7 @@
 using eFaktureManagement.ApiModels.Purchase;
 using eFaktureManagement.ApiModels.Sale;
 using eFaktureModel.Api.Models;
+using eFaktureModel.Api.Models.Dto;
 using eFaktureModel.Api.Models.Invoices;
 using eFaktureModel.Api.Models.Sales;
 using eFaktureModel.Api.Models.Vat;

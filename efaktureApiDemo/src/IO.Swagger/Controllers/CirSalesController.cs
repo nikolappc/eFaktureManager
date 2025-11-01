@@ -1,4 +1,5 @@
 ﻿using eFaktureModel.Api.Models.Cir;
+using eFaktureModel.Api.Models.Invoices;
 using IO.Swagger.Attributes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -35,5 +36,31 @@ namespace eFaktureApiDemo.Controllers
             : default(CirHistoryDto);            //TODO: Change the data returned
             return new ObjectResult(example);
         }
+
+
+        /// <summary>
+        /// Get sales invoice assignation history by CIR invoice Id
+        /// </summary>
+        /// <param name="cirInvoiceId"></param>
+        /// <param name="apiKey"></param>
+        /// <response code="200">Success</response>
+        [HttpGet]
+        [Route("/swagger/public_v1/swagger.json/api/publicApi/sales-cir-invoice/getSalesInvoiceAssignationHistory/{cirInvoiceId}")]
+        [ValidateModelState]
+        [SwaggerOperation("ApiPublicApiSalesCirInvoiceGetSalesInvoiceAssignationHistoryCirInvoiceIdGet")]
+        [SwaggerResponse(statusCode: 200, type: typeof(InvoiceHistoryDto), description: "Success")]
+        public virtual IActionResult ApiPublicApiSalesCirInvoiceGetSalesInvoiceAssignationHistoryCirInvoiceIdGet([FromRoute][Required] string cirInvoiceId, [FromHeader] string apiKey)
+        {
+            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
+            // return StatusCode(200, default(InvoiceHistoryDto));
+            string exampleJson = null;
+            exampleJson = "{\r\n  \"invoiceChanges\" : [ {\r\n    \"dateChanged\" : \"2000-01-23T04:56:07.000+00:00\",\r\n    \"newValue\" : \"newValue\",\r\n    \"propertyName\" : \"propertyName\",\r\n    \"serviceDesk\" : true,\r\n    \"id\" : 8,\r\n    \"oldValue\" : \"oldValue\",\r\n    \"ispName\" : \"ispName\",\r\n    \"user\" : {\r\n      \"firstName\" : \"firstName\",\r\n      \"lastName\" : \"lastName\"\r\n    },\r\n    \"version\" : 7\r\n  }, {\r\n    \"dateChanged\" : \"2000-01-23T04:56:07.000+00:00\",\r\n    \"newValue\" : \"newValue\",\r\n    \"propertyName\" : \"propertyName\",\r\n    \"serviceDesk\" : true,\r\n    \"id\" : 8,\r\n    \"oldValue\" : \"oldValue\",\r\n    \"ispName\" : \"ispName\",\r\n    \"user\" : {\r\n      \"firstName\" : \"firstName\",\r\n      \"lastName\" : \"lastName\"\r\n    },\r\n    \"version\" : 7\r\n  } ],\r\n  \"invoiceId\" : 5\r\n}";
+
+            var example = exampleJson != null
+            ? JsonConvert.DeserializeObject<InvoiceHistoryDto>(exampleJson)
+            : default(InvoiceHistoryDto);            //TODO: Change the data returned
+            return new ObjectResult(example);
+        }
+
     }
 }
