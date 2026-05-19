@@ -8,12 +8,16 @@ using System;
 using eFaktureModel.Api.Models.Purchase;
 using eFaktureModel.Api.Models.Vat;
 using eFaktureApiDemo.Services;
+using eFaktureModel.Api.Enums.Purchase;
+using System.IO;
+using System.Security;
+using AspNetCore.SecurityKey;
 
 namespace eFaktureApiDemo.Controllers
 {
 
     [ApiController]
-
+    [SecurityKey]
     public class PurchaseController:ControllerBase
     {
 
@@ -177,12 +181,15 @@ namespace eFaktureApiDemo.Controllers
             //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
             // return StatusCode(200, default(List<PurchaseInvoiceStatusChangeDto>));
             string exampleJson = null;
-            exampleJson = "[ {\r\n  \"date\" : \"date\",\r\n  \"eventId\" : 0,\r\n  \"isAutoAssigned\" : true,\r\n  \"cirAssignmentChange\" : \"Assignment\",\r\n  \"cirInvoiceId\" : \"cirInvoiceId\",\r\n  \"isSigned\" : true,\r\n  \"newInvoiceStatus\" : \"New\",\r\n  \"comment\" : \"comment\",\r\n  \"stornoNumber\" : \"stornoNumber\",\r\n  \"purchaseInvoiceId\" : 6,\r\n  \"subscriptionKey\" : \"subscriptionKey\"\r\n}, {\r\n  \"date\" : \"date\",\r\n  \"eventId\" : 0,\r\n  \"isAutoAssigned\" : true,\r\n  \"cirAssignmentChange\" : \"Assignment\",\r\n  \"cirInvoiceId\" : \"cirInvoiceId\",\r\n  \"isSigned\" : true,\r\n  \"newInvoiceStatus\" : \"New\",\r\n  \"comment\" : \"comment\",\r\n  \"stornoNumber\" : \"stornoNumber\",\r\n  \"purchaseInvoiceId\" : 6,\r\n  \"subscriptionKey\" : \"subscriptionKey\"\r\n} ]";
 
-            var list = _service.GenerateChanges();
+            exampleJson =  System.IO.File.ReadAllText(Path.Combine("Dataset", "Purchase", "changes.json"));   
 
-            var example = list != null
-            ? list
+            List<PurchaseInvoiceStatusChangeDto> response;
+
+            response = JsonConvert.DeserializeObject<List<PurchaseInvoiceStatusChangeDto>>(exampleJson);
+
+            var example = response != null
+            ? response
             : default;
             return new ObjectResult(example);
         }

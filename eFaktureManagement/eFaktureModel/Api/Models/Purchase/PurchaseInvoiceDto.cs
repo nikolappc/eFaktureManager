@@ -18,11 +18,13 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using eFaktureModel.Api.Models.Cir;
-using eFaktureModel.Api.Models.Sales;
-using eFaktureModel.Api.Models.Vat;
 using eFaktureModel.Api.Models.Invoices;
-using eFaktureModel.Api.Models.Enums;
 using eFaktureModel.Api.Models.Dto;
+using eFaktureModel.Api.Enums.Purchase;
+using eFaktureModel.Api.Enums.Vat;
+using eFaktureModel.Api.Enums.Sales;
+using eFaktureModel.Api.Enums;
+using eFaktureModel.Api.Enums.Cir;
 
 namespace eFaktureModel.Api.Models.Purchase
 {

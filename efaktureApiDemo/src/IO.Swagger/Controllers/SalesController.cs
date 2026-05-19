@@ -10,7 +10,7 @@ using eFaktureModel.Api.Models.Sales;
 using eFaktureModel.Api.Models.Invoices;
 using eFaktureModel.Api.Models.Vat;
 using eFaktureModel.Api.Models.Dto;
-using eFaktureModel.Api.Models.Enums;
+using eFaktureModel.Api.Enums.Cir;
 
 namespace eFaktureApiDemo.Controllers
 {

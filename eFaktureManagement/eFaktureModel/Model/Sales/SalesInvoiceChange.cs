@@ -1,4 +1,4 @@
-﻿using eFaktureModel.Api.Models.Sales;
+﻿using eFaktureModel.Api.Enums.Sales;
 using eFaktureModel.Model.Purchase;
 using System;
 using System.Collections.Generic;

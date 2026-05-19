@@ -20,9 +20,11 @@ using Newtonsoft.Json;
 using eFaktureModel.Api.Models.Cir;
 using eFaktureModel.Api.Models.Company;
 using eFaktureModel.Api.Models.Sales;
-using eFaktureModel.Api.Models.Enums;
-using eFaktureModel.Api.Models.Company.Enums;
 using eFaktureModel.Api.Models.Dto;
+using eFaktureModel.Api.Enums.Sales;
+using eFaktureModel.Api.Enums;
+using eFaktureModel.Api.Enums.Company;
+using eFaktureModel.Api.Enums.Cir;
 
 namespace eFaktureModel.Api.Models.Invoices
 {

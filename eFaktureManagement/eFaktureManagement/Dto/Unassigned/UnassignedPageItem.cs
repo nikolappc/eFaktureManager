@@ -1,4 +1,4 @@
-﻿using eFaktureModel.Api.Models.Purchase;
+﻿using eFaktureModel.Api.Enums.Purchase;
 
 namespace eFaktureManagement.Dto.Unassigned
 {

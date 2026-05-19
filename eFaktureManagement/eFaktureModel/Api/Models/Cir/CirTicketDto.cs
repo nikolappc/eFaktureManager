@@ -17,6 +17,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
+using eFaktureModel.Api.Enums.Cir;
 
 namespace eFaktureModel.Api.Models.Cir
 {

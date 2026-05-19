@@ -17,8 +17,9 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using eFaktureModel.Api.Models.Cir;
-using eFaktureModel.Api.Models.Invoices;
+using eFaktureModel.Api.Enums.Purchase;
+using eFaktureModel.Api.Enums.Invoices;
+using eFaktureModel.Api.Enums.Cir;
 
 namespace eFaktureModel.Api.Models.Purchase
 {

@@ -21,6 +21,7 @@ using Microsoft.AspNetCore.Http;
 using eFaktureModel.Api.Models.Customs;
 using eFaktureModel.Api.Models.Company;
 using eFaktureModel.Api.Models.Dto;
+using eFaktureModel.Api.Enums.Customs;
 
 namespace IO.Swagger.Controllers
 {

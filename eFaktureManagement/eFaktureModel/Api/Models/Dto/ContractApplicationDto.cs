@@ -17,7 +17,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
-using eFaktureModel.Api.Models.Company.Enums;
+using eFaktureModel.Api.Enums.Company;
 
 namespace eFaktureModel.Api.Models.Dto
 {

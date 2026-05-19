@@ -1,10 +1,11 @@
 ﻿using eFaktureManagement.ApiModels.Purchase;
+using eFaktureModel.Api.Enums.Cir;
 using eFaktureModel.Api.Models.Cir;
 using eFaktureModel.Api.Models.Purchase;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
-using PurchaseInvoiceStatus = eFaktureModel.Api.Models.Purchase.PurchaseInvoiceStatus;
+using PurchaseInvoiceStatus = eFaktureModel.Api.Enums.Purchase.PurchaseInvoiceStatus;
 
 namespace eFaktureApiDemo.Services
 {

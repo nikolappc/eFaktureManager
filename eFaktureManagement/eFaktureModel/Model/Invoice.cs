@@ -1,4 +1,4 @@
-﻿using eFaktureModel.Api.Models.Cir;
+﻿using eFaktureModel.Api.Enums.Cir;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
