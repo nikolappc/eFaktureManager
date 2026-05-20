@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Invoice xmlns="urn:oasis:names:specification:ubl:schema:xsd:Invoice-2"
+         xmlns:cac="urn:oasis:names:specification:ubl:schema:xsd:CommonAggregateComponents-2"
+         xmlns:cbc="urn:oasis:names:specification:ubl:schema:xsd:CommonBasicComponents-2">
+
+    <cbc:CustomizationID>urn:cen.eu:en16931:2017#compliant#urn:mfin.gov.rs:srbdt:2022</cbc:CustomizationID>
+    <cbc:ID>CIR-2026-10451</cbc:ID>
+    <cbc:IssueDate>2026-05-18</cbc:IssueDate>
+    <cbc:DueDate>2026-05-25</cbc:DueDate>
+    <cbc:InvoiceTypeCode>380</cbc:InvoiceTypeCode>
+    <cbc:Note>Invoice imported from ERP connector</cbc:Note>
+    <cbc:DocumentCurrencyCode>RSD</cbc:DocumentCurrencyCode>
+
+    <cac:AccountingSupplierParty>
+        <cac:Party>
+            <cbc:EndpointID schemeID="9948">100000001</cbc:EndpointID>
+            <cac:PartyName>
+                <cbc:Name>Supplier Company 1 DOO</cbc:Name>
+            </cac:PartyName>
+            <cac:PartyTaxScheme>
+                <cbc:CompanyID>RS100000001</cbc:CompanyID>
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:PartyTaxScheme>
+        </cac:Party>
+    </cac:AccountingSupplierParty>
+
+    <cac:AccountingCustomerParty>
+        <cac:Party>
+            <cbc:EndpointID schemeID="9948">200000001</cbc:EndpointID>
+            <cac:PartyName>
+                <cbc:Name>Customer Company 1 DOO</cbc:Name>
+            </cac:PartyName>
+        </cac:Party>
+    </cac:AccountingCustomerParty>
+
+    <cac:PaymentMeans>
+        <cbc:PaymentMeansCode>30</cbc:PaymentMeansCode>
+        <cac:PayeeFinancialAccount>
+            <cbc:ID>160-10000001-01</cbc:ID>
+        </cac:PayeeFinancialAccount>
+    </cac:PaymentMeans>
+
+    <cac:TaxTotal>
+        <cbc:TaxAmount currencyID="RSD">100</cbc:TaxAmount>
+
+        <cac:TaxSubtotal>
+            <cbc:TaxableAmount currencyID="RSD">1000</cbc:TaxableAmount>
+            <cbc:TaxAmount currencyID="RSD">100</cbc:TaxAmount>
+
+            <cac:TaxCategory>
+                <cbc:ID>S</cbc:ID>
+                <cbc:Percent>10</cbc:Percent>
+
+                <cac:TaxScheme>
+                    <cbc:ID>VAT</cbc:ID>
+                </cac:TaxScheme>
+            </cac:TaxCategory>
+        </cac:TaxSubtotal>
+    </cac:TaxTotal>
+
+    <cac:LegalMonetaryTotal>
+        <cbc:LineExtensionAmount currencyID="RSD">1000</cbc:LineExtensionAmount>
+        <cbc:TaxExclusiveAmount currencyID="RSD">1000</cbc:TaxExclusiveAmount>
+        <cbc:TaxInclusiveAmount currencyID="RSD">1100</cbc:TaxInclusiveAmount>
+        <cbc:PayableAmount currencyID="RSD">1100</cbc:PayableAmount>
+    </cac:LegalMonetaryTotal>
+
+    <cac:InvoiceLine>
+        <cbc:ID>5012</cbc:ID>
+        <cbc:InvoicedQuantity unitCode="H87">1</cbc:InvoicedQuantity>
+        <cbc:LineExtensionAmount currencyID="RSD">1000</cbc:LineExtensionAmount>
+
+        <cac:Item>
+            <cbc:Name>Consulting Services</cbc:Name>
+        </cac:Item>
+
+        <cac:Price>
+            <cbc:PriceAmount currencyID="RSD">1000</cbc:PriceAmount>
+        </cac:Price>
+    </cac:InvoiceLine>
+</Invoice>

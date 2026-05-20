@@ -178,8 +178,6 @@ namespace eFaktureApiDemo.Controllers
         [SwaggerResponse(statusCode: 200, type: typeof(List<PurchaseInvoiceStatusChangeDto>), description: "Success")]
         public virtual IActionResult ApiPublicApiPurchaseInvoiceChangesPost([FromHeader] string apiKey, [FromQuery] DateTime? date)
         {
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200, default(List<PurchaseInvoiceStatusChangeDto>));
             string exampleJson = null;
 
             exampleJson =  System.IO.File.ReadAllText(Path.Combine("Dataset", "Purchase", "changes.json"));   
@@ -310,10 +308,19 @@ namespace eFaktureApiDemo.Controllers
         [SwaggerOperation("ApiPublicApiPurchaseInvoiceXmlGet")]
         public virtual IActionResult ApiPublicApiPurchaseInvoiceXmlGet([FromHeader] string apiKey, [FromQuery] long? invoiceId)
         {
-            //TODO: Uncomment the next line to return response 200 or use other options such as return this.NotFound(), return this.BadRequest(..), ...
-            // return StatusCode(200);
+           //Serve the File from DataSet/Xml folder with name purchase_invoice_id.xml
+            
+            string filePath = Path.Combine("Dataset","Purchase", "Xml", $"{invoiceId}.xml");
+            if (System.IO.File.Exists(filePath))
+            {
+                var fileStream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+                return File(fileStream, "application/xml", $"{invoiceId}.xml");
+            }
+            else
+            {
+                return NotFound($"Xml sa ID brojem {invoiceId} ulazne fakture ne postoji.");
+            }
 
-            throw new NotImplementedException();
         }
     }
 }

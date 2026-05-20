@@ -22,7 +22,4 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\eFaktureManagement\eFaktureModel\eFaktureModel.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Dataset\Purchase\Xml\" />
-  </ItemGroup>
 </Project>
