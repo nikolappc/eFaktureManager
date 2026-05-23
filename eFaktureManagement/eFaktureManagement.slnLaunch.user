@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "Start All",
+    "Projects": [
+      {
+        "Path": "..\\efaktureApiDemo\\src\\IO.Swagger\\eFaktureApiDemo.csproj",
+        "Action": "Start",
+        "DebugTarget": "IIS Express"
+      },
+      {
+        "Path": "eFaktureSync\\eFaktureSync.csproj",
+        "Action": "Start",
+        "DebugTarget": "eFaktureSync"
+      }
+    ]
+  }
+]
