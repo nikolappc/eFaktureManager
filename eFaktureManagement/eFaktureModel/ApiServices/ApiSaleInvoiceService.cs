@@ -22,14 +22,13 @@ using MiniInvoiceDto = eFaktureModel.Api.Models.Invoices.MiniInvoiceDto;
 
 namespace eFaktureManagement.ApiServices
 {
-    public class ApiSaleInvoiceService : ApiGenericInvoiceService<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto>, IApiSalesService
+    public class ApiSaleInvoiceService : AApiSalesService
     {
-
-        public ApiSaleInvoiceService(IConfiguration configRoot) : base(configRoot, SalesApiPaths.Paths)
+        public ApiSaleInvoiceService(IConfiguration configRoot, Dictionary<EApiPaths, string> PathsConfirguration) : base(configRoot, PathsConfirguration)
         {
         }
 
-        public async Task<InvoiceDto?> CancelDraft(long invoideId, string cancelComment)
+        public override async Task<InvoiceDto?> CancelDraft(long invoideId, string cancelComment)
         {
             using (var httpClient = new HttpClientBuilder<InvoiceDto?>(configRoot))
             {
@@ -42,7 +41,7 @@ namespace eFaktureManagement.ApiServices
 
                 httpClient
 
-                    .AddPath(PathsConfirguration[EApiPaths.CANCEL])
+                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.CANCEL])
                     .AddHttpContentBody(body);
 
                 var response = await httpClient.PostResult();
@@ -51,14 +50,14 @@ namespace eFaktureManagement.ApiServices
             }
         }
 
-        public async Task<long?> DeleteDraft(long invoiceId)
+        public override async Task<long?> DeleteDraft(long invoiceId)
         {
             using (var httpClient = new HttpClientBuilder<long?>(configRoot))
             {
 
                 httpClient
 
-                    .AddPath(PathsConfirguration[EApiPaths.SINGLE])
+                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.SINGLE])
                     .AddPathParam(invoiceId);
 
                 var response = await httpClient.DeleteResult();
@@ -67,14 +66,14 @@ namespace eFaktureManagement.ApiServices
             }
         }
 
-        public async Task<List<long>?> DeleteDrafts(List<long> invoiceIds)
+        public override async Task<List<long>?> DeleteDrafts(List<long> invoiceIds)
         {
             using (var httpClient = new HttpClientBuilder<List<long>?>(configRoot))
             {
 
                 httpClient
 
-                    .AddPath(PathsConfirguration[EApiPaths.SINGLE])
+                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.SINGLE])
                     .AddHttpContentBody(invoiceIds);
 
                 var response = await httpClient.DeleteResult();
@@ -83,13 +82,13 @@ namespace eFaktureManagement.ApiServices
             }
         }
 
-        public async Task<ValueAddedTaxExemptionReasonDto?> GetValueAddedTaxExemptionReasonList()
+        public override async Task<ValueAddedTaxExemptionReasonDto?> GetValueAddedTaxExemptionReasonList()
         {
             using (var httpClient = new HttpClientBuilder<ValueAddedTaxExemptionReasonDto?>(configRoot))
             {
 
                 httpClient
-                    .AddPath(PathsConfirguration[EApiPaths.VAT_EXEMPTIONS]);
+                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.VAT_EXEMPTIONS]);
 
                 var response = await httpClient.GetResult();
 
@@ -97,7 +96,7 @@ namespace eFaktureManagement.ApiServices
             }
         }
 
-        public async Task<MiniInvoiceDto?> ImportUbl(string requestId, bool sendToCir, bool executeValidation, string xml)
+        public override async Task<MiniInvoiceDto?> ImportUbl(string requestId, bool sendToCir, bool executeValidation, string xml)
         {
             using (var httpClient = new HttpClientBuilder<MiniInvoiceDto?>(configRoot))
             {
@@ -109,7 +108,7 @@ namespace eFaktureManagement.ApiServices
                 };
                 httpClient
                     .AddHttpContentText(xml, Encoding.UTF8)
-                    .AddPath(PathsConfirguration[EApiPaths.UBL])
+                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.UBL_DOWNLOAD])
                     .AddQueryParams(queryParams);
 
                 var response = await httpClient.PostResult();
@@ -118,7 +117,7 @@ namespace eFaktureManagement.ApiServices
             }
         }
 
-        public async Task<InvoiceDto?> Storno(long invoideId, string stornoNumber, string stornoComment)
+        public override async Task<InvoiceDto?> Storno(long invoideId, string stornoNumber, string stornoComment)
         {
             using (var httpClient = new HttpClientBuilder<InvoiceDto?>(configRoot))
             {
@@ -129,7 +128,7 @@ namespace eFaktureManagement.ApiServices
                     StornoNumber = stornoNumber
                 };  
                 httpClient
-                    .AddPath(PathsConfirguration[EApiPaths.STORNO])
+                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.STORNO])
                     .AddHttpContentBody(body);
 
                 var response = await httpClient.PostResult();
@@ -140,7 +139,7 @@ namespace eFaktureManagement.ApiServices
 
 
 
-        public async Task<MiniInvoiceDto?> UploadUbl(string requestId, bool sendToCir, bool executeValidation, byte[] xml)
+        public override async Task<MiniInvoiceDto?> UploadUbl(string requestId, bool sendToCir, bool executeValidation, byte[] xml)
         {
             using (var httpClient = new HttpClientBuilder<MiniInvoiceDto?>(configRoot))
             {
@@ -153,7 +152,7 @@ namespace eFaktureManagement.ApiServices
                 };
 
                 httpClient.AddHttpContentUbl(xml)
-                    .AddPath(PathsConfirguration[EApiPaths.UBL_UPLOAD])
+                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.UBL_UPLOAD])
                     .AddQueryParams(queryParams);
 
 

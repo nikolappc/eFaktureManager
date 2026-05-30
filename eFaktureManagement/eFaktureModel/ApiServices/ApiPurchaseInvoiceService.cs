@@ -1,4 +1,5 @@
 ﻿using eFaktureManagement.ApiModels.Purchase;
+using eFaktureModel.Api.Config;
 using eFaktureModel.Api.Models.Purchase;
 using eFaktureModel.Api.Models.Vat;
 using eFaktureModel.ApiModels.Sale;
@@ -15,12 +16,11 @@ using PurchaseInvoiceDto = eFaktureModel.Api.Models.Purchase.PurchaseInvoiceDto;
 
 namespace eFaktureManagement.ApiServices
 {
-    public class ApiPurchaseInvoiceService : ApiGenericInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto>, IApiPurchaseService
+    public class ApiPurchaseInvoiceService : AApiPurchaseInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto>
     {
-        public ApiPurchaseInvoiceService(IConfiguration configRoot) : base(configRoot, PurchaseApiPaths.Paths)
+        public ApiPurchaseInvoiceService(IConfiguration configRoot, Dictionary<EApiPaths, string> pathsConfirguration) : base(configRoot, pathsConfirguration)
         {
         }
-
 
         private async Task<AcceptRejectResponse?> AcceptRejectPurhcaseInvoiceAsync(long invoiceId, string comment, bool accepted)
         {
@@ -34,7 +34,7 @@ namespace eFaktureManagement.ApiServices
                     Comment = comment
                 };
                 httpClient
-                    .AddPath(PurchaseApiPaths.Paths[EApiPaths.PURCHASE_ACCEPT_REJECT])
+                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.ACCEPT_REJECT])
                     .AddHttpContentBody(request);
 
                 var response = await httpClient.PostResult();
@@ -44,18 +44,18 @@ namespace eFaktureManagement.ApiServices
             }
         }
 
-        public async Task<AcceptRejectResponse?> AcceptPurchaseInvoiceAsync(long invoiceId, string comment)
+        public override async Task<AcceptRejectResponse?> AcceptPurchaseInvoiceAsync(long invoiceId, string comment)
         {
             return await AcceptRejectPurhcaseInvoiceAsync( invoiceId, comment, true);
         }
 
 
-        public async Task<AcceptRejectResponse?> RejectPurchaseInvoiceAsync(long invoiceId, string comment)
+        public override  async Task<AcceptRejectResponse?> RejectPurchaseInvoiceAsync(long invoiceId, string comment)
         {
             return await AcceptRejectPurhcaseInvoiceAsync(invoiceId, comment, false);
         }
 
-        public async Task<bool> VatReverseCarge(long invoiceId, double ammount)
+        public override async Task<bool> VatReverseCarge(long invoiceId, double ammount)
         {
             using (var httpClient = new HttpClientBuilder(configRoot))
             {
@@ -66,7 +66,7 @@ namespace eFaktureManagement.ApiServices
                     VatAmount = ammount
                 };
                 httpClient
-                    .AddPath(PurchaseApiPaths.Paths[EApiPaths.VAT_REV_CHRG])
+                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.VAT_REV_CHRG])
                     .AddHttpContentBody(request);
 
                 var response = await httpClient.PostResult();
@@ -75,5 +75,6 @@ namespace eFaktureManagement.ApiServices
                 return response.StatusCode == System.Net.HttpStatusCode.OK;
             }
         }
+
     }
 }

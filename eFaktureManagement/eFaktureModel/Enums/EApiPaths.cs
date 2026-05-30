@@ -8,13 +8,13 @@ namespace eFaktureModel.Enums
 {
     public enum EApiPaths
     {
-             API_ROOT = 1,
-             CHANGES,
-             SINGLE,
-             IDS,
-             PURCHASE_ACCEPT_REJECT,
-             UBL,
-             VAT_EXEMPTIONS,
+        API_ROOT = 1,
+        CHANGES,
+        SINGLE,
+        IDS,
+        ACCEPT_REJECT,
+        UBL_DOWNLOAD,
+        VAT_EXEMPTIONS,
         UBL_UPLOAD,
         XML_DOWNLOAD,
         PDF_DOWNLOAD,

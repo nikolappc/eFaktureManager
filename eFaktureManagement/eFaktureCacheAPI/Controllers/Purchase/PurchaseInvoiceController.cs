@@ -1,43 +1,59 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using eFaktureManagement.ApiServices;
+using eFaktureModel.Api.Models.Purchase;
+using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace eFaktureCacheAPI.Controllers.Purchase
+[ApiController]
+[Route("api/purchase-invoices")]
+public class PurchaseController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class PurchaseInvoiceController : ControllerBase
+    private readonly AApiPurchaseInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto> _service;
+
+    public PurchaseController(AApiPurchaseInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto> service)
     {
-        // GET: api/<ValuesController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        _service = service;
+    }
 
-        // GET api/<ValuesController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+    [HttpPost("accept-reject")]
+    public async Task<IActionResult> AcceptReject([FromBody] AcceptRejectPurchaseInvoiceDto body)
+    {
+        if (body.Accepted)
         {
-            return "value";
+            var result = await _service.AcceptPurchaseInvoiceAsync(body.InvoiceId, body.Comment);
+            return Ok(result);
         }
+        else
+        {
+            var result = await _service.RejectPurchaseInvoiceAsync(body.InvoiceId, body.Comment);
+            return Ok(result);
 
-        // POST api/<ValuesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
         }
+    }
 
-        // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+    [HttpGet("changes")]
+    public async Task<IActionResult> GetChanges([FromQuery] DateTime date)
+    {
+        var result = await _service.GetChangesAsync(date);
+        return Ok(result);
+    }
 
-        // DELETE api/<ValuesController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+    [HttpGet("{invoiceId}")]
+    public async Task<IActionResult> GetInvoice(long invoiceId)
+    {
+        var result = await _service.GetInvoiceAsync(invoiceId);
+        return Ok(result);
+    }
+
+    [HttpGet("ids")]
+    public async Task<IActionResult> GetIds([FromQuery] string status, [FromQuery] DateTime dateFrom, [FromQuery] DateTime dateTo)
+    {
+        var result = await _service.GetIdsAsync(status, dateFrom, dateTo);
+        return Ok(result);
+    }
+
+    [HttpGet("xml/{invoiceId}")]
+    public async Task<IActionResult> GetXml(long invoiceId)
+    {
+        var xml = await _service.GetXmlAsync(invoiceId);
+        return File(xml, "application/xml", $"{invoiceId}.xml");
     }
 }

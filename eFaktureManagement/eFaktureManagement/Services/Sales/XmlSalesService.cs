@@ -6,9 +6,9 @@ namespace eFaktureManagement.Services.Sales
     public class XmlSalesService : IXmlSalesService
     {
 
-        private readonly IApiSalesService apiSalesService;
+        private readonly AApiSalesService apiSalesService;
 
-        public XmlSalesService(IApiSalesService apiSalesService)
+        public XmlSalesService(AApiSalesService apiSalesService)
         {
             this.apiSalesService = apiSalesService;
         }

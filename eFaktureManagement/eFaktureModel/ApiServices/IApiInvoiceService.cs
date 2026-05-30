@@ -1,4 +1,4 @@
-﻿namespace eFaktureManagement.ApiServices
+﻿namespace eFaktureModel.ApiServices
 {
     public interface IApiInvoiceService<C, I>
     {

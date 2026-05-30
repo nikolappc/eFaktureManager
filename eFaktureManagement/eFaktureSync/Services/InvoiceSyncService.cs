@@ -1,5 +1,5 @@
-﻿using eFaktureManagement.ApiServices;
-using eFaktureModel.Api.Models;
+﻿using eFaktureModel.Api.Models;
+using eFaktureModel.ApiServices;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,6 @@ namespace eFaktureSync.Services
 
         
         public readonly IApiInvoiceService<Status, T> apiInvoiceService;
-
 
 
         public InvoiceSyncService(IConfiguration configRoot, IApiInvoiceService<Status, T> apiInvoiceService)
