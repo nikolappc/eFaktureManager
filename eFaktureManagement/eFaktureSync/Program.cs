@@ -29,14 +29,12 @@ var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, serviceCollection) =>
     {
 
-        //serviceCollection.Configure<IConfiguration>(context.Configuration);
-        serviceCollection.AddScoped<eFaktureContext, eFaktureContext>((provider) =>
-        {
-            return new eFaktureContext(new DbContextOptionsBuilder<eFaktureContext>()
-                .UseSqlServer(context.Configuration.GetConnectionString("eFaktureConnection"))
-                .Options);
+       
+        serviceCollection.AddDbContext<eFaktureContext>(options =>
+            options.UseSqlServer(
+            context.Configuration.GetConnectionString("eFaktureConnection")));
 
-        });
+
         serviceCollection.AddScoped<ISyncService, PurchaseSyncService>();
         serviceCollection.AddScoped<ISyncService, SalesSyncService>();
         serviceCollection.AddScoped<IApiInvoiceService<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto>, ApiSaleInvoiceService>();
