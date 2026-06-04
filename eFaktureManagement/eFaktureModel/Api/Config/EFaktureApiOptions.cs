@@ -9,8 +9,12 @@ namespace eFaktureModel.Api.Config
 {
     public class EFaktureApiOptions
     {
-        public string BaseUrl { get; set; }
+        public EFaktureApiOptions()
+        {
+        }
 
-        public Dictionary<EApiPaths, string> Endpoints { get; set; } 
+        public string? BaseUrl { get; set; } = null;
+
+        public Dictionary<EApiPaths, string> Endpoints { get; set; } = new();
     }
 }

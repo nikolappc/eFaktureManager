@@ -2,6 +2,7 @@
 using eFaktureManagement.ApiModels.Purchase;
 using eFaktureModel.Api.Config;
 using eFaktureModel.ApiModels.Sale;
+using eFaktureModel.ApiServices;
 using eFaktureModel.ApiServices.Util;
 using eFaktureModel.Enums;
 using eFaktureSync.ApiServices;
@@ -15,26 +16,38 @@ using PurchaseInvoiceDto = eFaktureModel.Api.Models.Purchase.PurchaseInvoiceDto;
 
 namespace eFaktureManagement.ApiServices
 {
-    public class ApiGenericInvoiceService<C, I> : IApiInvoiceService<C, I>
+    public abstract class ApiGenericInvoiceService<C, I> : IApiInvoiceService<C, I>
     {
-        public EFaktureApiOptions PathsConfirguration { get; set; }
+        public EFaktureApiOptions PathsConfiguration { get; set; }
 
         public readonly IConfiguration configRoot;
 
-        public ApiGenericInvoiceService(IConfiguration configRoot, Dictionary<EApiPaths, string> pathsConfirguration)
+        public ApiGenericInvoiceService(IConfiguration configRoot, EFaktureApiRoot pathsConfigRoot)
         {
-
             this.configRoot = configRoot;
+
+            this.PathsConfiguration = ExtractPathOptions(pathsConfigRoot);
         }
 
+
+        protected abstract EApiSections GetSection();
+        private EFaktureApiOptions ExtractPathOptions(EFaktureApiRoot pathsConfiguration)
+        {
+            var section = GetSection();
+            if (pathsConfiguration.ApiPaths.ContainsKey(section))
+            {
+                return pathsConfiguration.ApiPaths[section];
+            }
+            return new();
+        }
 
         public async Task<List<C>?> GetChangesAsync(DateTime date)
         {
             using (var httpClient = new HttpClientBuilder<List<C>?>(configRoot))
             {
                 var request = new SaleChangeRequest { date = date };
-
-                httpClient.AddHttpContentBody(request).AddPath(PathsConfirguration.Endpoints[EApiPaths.CHANGES]);
+                var path = PathsConfiguration.Endpoints[EApiPaths.CHANGES];
+                httpClient.AddHttpContentBody(request).AddPath(path);
                 List<C>? list = (await httpClient.PostResult()).Result;
 
                 return list ?? new();
@@ -55,7 +68,7 @@ namespace eFaktureManagement.ApiServices
                     to
                 };
 
-                httpClient.AddHttpContentBody(body).AddPath(PathsConfirguration.Endpoints[EApiPaths.IDS]);
+                httpClient.AddHttpContentBody(body).AddPath(PathsConfiguration.Endpoints[EApiPaths.IDS]);
 
                 var elem = await httpClient.PostResult();
 
@@ -72,7 +85,7 @@ namespace eFaktureManagement.ApiServices
             using (var httpClient = new HttpClientBuilder<I>(configRoot))
             {
 
-                httpClient.AddQueryItem("invoiceId", invoiceId.ToString()).AddPath(PathsConfirguration.Endpoints[EApiPaths.IDS]);
+                httpClient.AddQueryItem("invoiceId", invoiceId.ToString()).AddPath(PathsConfiguration.Endpoints[EApiPaths.IDS]);
 
                 var elem = await httpClient.GetResult();
 
@@ -82,19 +95,19 @@ namespace eFaktureManagement.ApiServices
 
         public async Task<byte[]> DownloadSigned(long invoiceId)
         {
-            return await GetFileAsync(invoiceId, PathsConfirguration.Endpoints[EApiPaths.IDS]);
+            return await GetFileAsync(invoiceId, PathsConfiguration.Endpoints[EApiPaths.IDS]);
         }
 
         public async Task<byte[]> GetXmlAsync(long invoiceId)
         {
-            return await GetFileAsync(invoiceId, PathsConfirguration.Endpoints[EApiPaths.XML_DOWNLOAD]);
+            return await GetFileAsync(invoiceId, PathsConfiguration.Endpoints[EApiPaths.XML_DOWNLOAD]);
       
         }
 
         public async Task<byte[]> GetPdfAsync(long invoiceId)
         {
 
-            return await GetFileAsync(invoiceId, PathsConfirguration.Endpoints[EApiPaths.PDF_DOWNLOAD]);  
+            return await GetFileAsync(invoiceId, PathsConfiguration.Endpoints[EApiPaths.PDF_DOWNLOAD]);  
         
         }
 

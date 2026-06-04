@@ -1,8 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using eFaktureManagement.ApiServices;
 using eFaktureManagement.Data;
+using eFaktureModel.Api.Config;
 using eFaktureModel.Api.Models.Purchase;
 using eFaktureModel.Api.Models.Sales;
+using eFaktureModel.ApiServices;
 using eFaktureSync.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -25,6 +27,8 @@ var host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration((context, config) =>
     {
         config.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+        config.AddEnvironmentVariables();   
     })
     .ConfigureServices((context, serviceCollection) =>
     {
@@ -34,6 +38,12 @@ var host = Host.CreateDefaultBuilder(args)
             options.UseSqlServer(
             context.Configuration.GetConnectionString("eFaktureConnection")));
 
+
+        var apiroot = new EFaktureApiRoot();
+
+        context.Configuration.GetSection("ApiConfig").Bind(apiroot);    
+
+        serviceCollection.AddSingleton<EFaktureApiRoot>(apiroot);
 
         serviceCollection.AddScoped<ISyncService, PurchaseSyncService>();
         serviceCollection.AddScoped<ISyncService, SalesSyncService>();

@@ -2,6 +2,7 @@ using eFaktureManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.CodeAnalysis;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("eFaktureConnection") ?? throw new InvalidOperationException("Connection string 'eFaktureContextConnection' not found.");
@@ -38,7 +39,11 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         o.RequireHttpsMetadata = false;
     });
 
+
+
 var app = builder.Build();
+
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

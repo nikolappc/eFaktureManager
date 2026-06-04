@@ -1,4 +1,5 @@
-﻿using eFaktureModel.Api.Models.Invoices;
+﻿using eFaktureModel.Api.Config;
+using eFaktureModel.Api.Models.Invoices;
 using eFaktureModel.Api.Models.Sales;
 using eFaktureModel.Api.Models.Vat;
 using eFaktureModel.Enums;
@@ -8,7 +9,7 @@ namespace eFaktureManagement.ApiServices
 {
     public abstract class AApiSalesService : ApiGenericInvoiceService<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto>
     {
-        protected AApiSalesService(IConfiguration configRoot, Dictionary<EApiPaths, string> pathsConfirguration) : base(configRoot, pathsConfirguration)
+        protected AApiSalesService(IConfiguration configRoot, EFaktureApiRoot pathsConfirguration) : base(configRoot, pathsConfirguration)
         {
         }
 

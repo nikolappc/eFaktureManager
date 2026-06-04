@@ -1,6 +1,7 @@
 ﻿using eFaktureManagement.ApiModels;
 using eFaktureManagement.ApiModels.Purchase;
 using eFaktureManagement.ApiModels.Sale;
+using eFaktureModel.Api.Config;
 using eFaktureModel.Api.Models;
 using eFaktureModel.Api.Models.Dto;
 using eFaktureModel.Api.Models.Invoices;
@@ -24,7 +25,7 @@ namespace eFaktureManagement.ApiServices
 {
     public class ApiSaleInvoiceService : AApiSalesService
     {
-        public ApiSaleInvoiceService(IConfiguration configRoot, Dictionary<EApiPaths, string> PathsConfirguration) : base(configRoot, PathsConfirguration)
+        public ApiSaleInvoiceService(IConfiguration configRoot, EFaktureApiRoot PathsConfirguration) : base(configRoot, PathsConfirguration)
         {
         }
 
@@ -41,7 +42,7 @@ namespace eFaktureManagement.ApiServices
 
                 httpClient
 
-                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.CANCEL])
+                    .AddPath(PathsConfiguration.Endpoints[EApiPaths.CANCEL])
                     .AddHttpContentBody(body);
 
                 var response = await httpClient.PostResult();
@@ -57,7 +58,7 @@ namespace eFaktureManagement.ApiServices
 
                 httpClient
 
-                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.SINGLE])
+                    .AddPath(PathsConfiguration.Endpoints[EApiPaths.SINGLE])
                     .AddPathParam(invoiceId);
 
                 var response = await httpClient.DeleteResult();
@@ -73,7 +74,7 @@ namespace eFaktureManagement.ApiServices
 
                 httpClient
 
-                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.SINGLE])
+                    .AddPath(PathsConfiguration.Endpoints[EApiPaths.SINGLE])
                     .AddHttpContentBody(invoiceIds);
 
                 var response = await httpClient.DeleteResult();
@@ -88,7 +89,7 @@ namespace eFaktureManagement.ApiServices
             {
 
                 httpClient
-                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.VAT_EXEMPTIONS]);
+                    .AddPath(PathsConfiguration.Endpoints[EApiPaths.VAT_EXEMPTIONS]);
 
                 var response = await httpClient.GetResult();
 
@@ -108,7 +109,7 @@ namespace eFaktureManagement.ApiServices
                 };
                 httpClient
                     .AddHttpContentText(xml, Encoding.UTF8)
-                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.UBL_DOWNLOAD])
+                    .AddPath(PathsConfiguration.Endpoints[EApiPaths.UBL_DOWNLOAD])
                     .AddQueryParams(queryParams);
 
                 var response = await httpClient.PostResult();
@@ -128,7 +129,7 @@ namespace eFaktureManagement.ApiServices
                     StornoNumber = stornoNumber
                 };  
                 httpClient
-                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.STORNO])
+                    .AddPath(PathsConfiguration.Endpoints[EApiPaths.STORNO])
                     .AddHttpContentBody(body);
 
                 var response = await httpClient.PostResult();
@@ -152,7 +153,7 @@ namespace eFaktureManagement.ApiServices
                 };
 
                 httpClient.AddHttpContentUbl(xml)
-                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.UBL_UPLOAD])
+                    .AddPath(PathsConfiguration.Endpoints[EApiPaths.UBL_UPLOAD])
                     .AddQueryParams(queryParams);
 
 
@@ -164,6 +165,11 @@ namespace eFaktureManagement.ApiServices
 
                 return response.Result  ;
             }
+        }
+
+        protected override EApiSections GetSection()
+        {
+            return EApiSections.SALES;
         }
     }
 }

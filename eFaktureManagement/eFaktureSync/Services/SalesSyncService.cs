@@ -1,6 +1,7 @@
 ﻿using eFaktureManagement.ApiServices;
 using eFaktureManagement.Data;
 using eFaktureModel.Api.Models.Sales;
+using eFaktureModel.ApiServices;
 using eFaktureModel.Model.Sales;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

@@ -18,7 +18,7 @@ namespace eFaktureManagement.ApiServices
 {
     public abstract class AApiPurchaseInvoiceService<C, I> : ApiGenericInvoiceService<C, I>
     {
-        protected AApiPurchaseInvoiceService(IConfiguration configRoot, Dictionary<EApiPaths, string> pathsConfirguration) : base(configRoot, pathsConfirguration)
+        protected AApiPurchaseInvoiceService(IConfiguration configRoot, EFaktureApiRoot pathsConfirguration) : base(configRoot, pathsConfirguration)
         {
         }
         public abstract Task<AcceptRejectResponse?> AcceptPurchaseInvoiceAsync(long invoiceId, string? comment);

@@ -18,7 +18,7 @@ namespace eFaktureManagement.ApiServices
 {
     public class ApiPurchaseInvoiceService : AApiPurchaseInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto>
     {
-        public ApiPurchaseInvoiceService(IConfiguration configRoot, Dictionary<EApiPaths, string> pathsConfirguration) : base(configRoot, pathsConfirguration)
+        public ApiPurchaseInvoiceService(IConfiguration configRoot, EFaktureApiRoot pathsConfirguration) : base(configRoot, pathsConfirguration)
         {
         }
 
@@ -34,7 +34,7 @@ namespace eFaktureManagement.ApiServices
                     Comment = comment
                 };
                 httpClient
-                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.ACCEPT_REJECT])
+                    .AddPath(PathsConfiguration.Endpoints[EApiPaths.ACCEPT_REJECT])
                     .AddHttpContentBody(request);
 
                 var response = await httpClient.PostResult();
@@ -66,7 +66,7 @@ namespace eFaktureManagement.ApiServices
                     VatAmount = ammount
                 };
                 httpClient
-                    .AddPath(PathsConfirguration.Endpoints[EApiPaths.VAT_REV_CHRG])
+                    .AddPath(PathsConfiguration.Endpoints[EApiPaths.VAT_REV_CHRG])
                     .AddHttpContentBody(request);
 
                 var response = await httpClient.PostResult();
@@ -76,5 +76,9 @@ namespace eFaktureManagement.ApiServices
             }
         }
 
+        protected override EApiSections GetSection()
+        {
+            return EApiSections.PURCHASE;
+        }
     }
 }
