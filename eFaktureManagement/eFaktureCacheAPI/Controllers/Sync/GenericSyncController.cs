@@ -9,7 +9,7 @@ public class GenericSyncController<C, I> : ControllerBase
     private readonly IApiInvoiceService<C, I> _apiService;
     private readonly InvoiceSyncService<I, C> _syncService;
 
-    public GenericSyncController(IApiInvoiceService<C, I> apiService, InvoiceSyncService<I, C> syncService)
+    protected GenericSyncController(IApiInvoiceService<C, I> apiService, InvoiceSyncService<I, C> syncService)
     {
         _apiService = apiService;
         _syncService = syncService;
