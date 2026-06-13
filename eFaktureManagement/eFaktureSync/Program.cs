@@ -5,6 +5,8 @@ using eFaktureModel.Api.Config;
 using eFaktureModel.Api.Models.Purchase;
 using eFaktureModel.Api.Models.Sales;
 using eFaktureModel.ApiServices;
+using eFaktureModel.Services.Sync;
+using eFaktureSync.Config;
 using eFaktureSync.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -12,6 +14,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
 using System;
+using PurchaseSyncService = eFaktureSync.Services.PurchaseSyncService;
+using SalesSyncService = eFaktureSync.Services.SalesSyncService;
 
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(new ConfigurationBuilder()
@@ -47,8 +51,6 @@ var host = Host.CreateDefaultBuilder(args)
 
         serviceCollection.AddScoped<ISyncService, PurchaseSyncService>();
         serviceCollection.AddScoped<ISyncService, SalesSyncService>();
-        serviceCollection.AddScoped<IApiInvoiceService<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto>, ApiSaleInvoiceService>();
-        serviceCollection.AddScoped<IApiInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto>, ApiPurchaseInvoiceService>();
         serviceCollection.AddHostedService<SyncBackgroundService>();
 
     })

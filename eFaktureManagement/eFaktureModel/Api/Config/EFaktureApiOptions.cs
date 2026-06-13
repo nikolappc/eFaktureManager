@@ -7,14 +7,7 @@ using System.Threading.Tasks;
 
 namespace eFaktureModel.Api.Config
 {
-    public class EFaktureApiOptions
+    public class EFaktureApiOptions:GenericEFaktureApiOptions<EApiPaths>
     {
-        public EFaktureApiOptions()
-        {
-        }
-
-        public string? BaseUrl { get; set; } = null;
-
-        public Dictionary<EApiPaths, string> Endpoints { get; set; } = new();
     }
 }

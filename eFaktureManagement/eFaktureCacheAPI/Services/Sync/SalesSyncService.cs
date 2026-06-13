@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eFaktureSync.Services
+namespace eFaktureCacheAPI.Services.Sync
 {
     public class SalesSyncService : InvoiceSyncService<SimpleSalesInvoiceDto, SalesInvoiceStatusChangeDto>
     {
@@ -35,7 +35,7 @@ namespace eFaktureSync.Services
 
                 }
                 logger.LogWarning($"Sales invoice change has no id, eventId:{change.EventId}");
-                var salesInvoiceChange = new SalesInvoiceChange 
+                var salesInvoiceChange = new SalesInvoiceChange
                 {
                     SalesInvoiceId = change.SalesInvoiceId ?? 0,
 

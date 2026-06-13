@@ -7,13 +7,8 @@ using System.Threading.Tasks;
 
 namespace eFaktureModel.Api.Config
 {
-    public class EFaktureApiRoot
+    public class EFaktureApiRoot:GenericEFaktureApiRoot<EApiSections, EApiPaths>
     {
 
-        public EFaktureApiRoot()
-        {
-                ApiPaths = new Dictionary<EApiSections, EFaktureApiOptions>();
-        }
-        public Dictionary<EApiSections, EFaktureApiOptions> ApiPaths { get; set; } 
     }
 }

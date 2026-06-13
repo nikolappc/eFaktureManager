@@ -20,7 +20,7 @@ namespace eFaktureModel.ApiServices.Util
 {
     public class HttpClientBuilder<T> : IDisposable, IHttpClientBuilder<T>
     {
-        private readonly IConfiguration configRoot;
+        private readonly IConfiguration? configRoot;
         private HttpClient _httpClient;
         private UriBuilder? _uriBuilder;
 
@@ -33,7 +33,13 @@ namespace eFaktureModel.ApiServices.Util
             this.configRoot = configRoot;
             this._uriBuilder = new UriBuilder(configRoot[EApiPaths.API_ROOT.ToString()]??"");   
             _queryParams = new NameValueCollection();
-            _httpClient = new HttpClient();  
+            _httpClient = new HttpClient();
+        }
+        public HttpClientBuilder(string root)
+        {
+            this._uriBuilder = new UriBuilder(root ?? "");
+            _queryParams = new NameValueCollection();
+            _httpClient = new HttpClient();
 
         }
 

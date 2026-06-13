@@ -18,7 +18,7 @@ namespace eFaktureManagement.ApiServices
 {
     public abstract class ApiGenericInvoiceService<C, I> : IApiInvoiceService<C, I>
     {
-        public EFaktureApiOptions PathsConfiguration { get; set; }
+        public GenericEFaktureApiOptions<EApiPaths> PathsConfiguration { get; set; }
 
         public readonly IConfiguration configRoot;
 
@@ -31,7 +31,7 @@ namespace eFaktureManagement.ApiServices
 
 
         protected abstract EApiSections GetSection();
-        private EFaktureApiOptions ExtractPathOptions(EFaktureApiRoot pathsConfiguration)
+        private GenericEFaktureApiOptions<EApiPaths> ExtractPathOptions(EFaktureApiRoot pathsConfiguration)
         {
             var section = GetSection();
             if (pathsConfiguration.ApiPaths.ContainsKey(section))
@@ -43,10 +43,22 @@ namespace eFaktureManagement.ApiServices
 
         public async Task<List<C>?> GetChangesAsync(DateTime date)
         {
-            using (var httpClient = new HttpClientBuilder<List<C>?>(configRoot))
+            var path = PathsConfiguration.Endpoints[EApiPaths.CHANGES];
+            var root = PathsConfiguration.BaseUrl;
+            if (string.IsNullOrWhiteSpace(root))
+            {
+                throw new Exception("Api root not found.");
+            }
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new Exception("Api path not found.");
+            }
+
+
+            using (var httpClient = new HttpClientBuilder<List<C>?>(root))
             {
                 var request = new SaleChangeRequest { date = date };
-                var path = PathsConfiguration.Endpoints[EApiPaths.CHANGES];
+            
                 httpClient.AddHttpContentBody(request).AddPath(path);
                 List<C>? list = (await httpClient.PostResult()).Result;
 

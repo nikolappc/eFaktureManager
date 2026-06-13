@@ -1,12 +1,13 @@
 ﻿using eFaktureManagement.Data;
 using eFaktureModel.Api.Models.Company;
+using eFaktureModel.Services.Sync;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eFaktureSync.Services
+namespace eFaktureCacheAPI.Services.Sync
 {
     public abstract class AGeneralSyncService : ISyncService
 

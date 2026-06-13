@@ -11,17 +11,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eFaktureSync.Services
+namespace eFaktureCacheAPI.Services.Sync
 {
-    public class PublicPurchaseContractorSyncService : InvoiceSyncService<SimplePurchaseInvoiceDto, PurchaseInvoiceStatusChangeDto>
+    public class PurchaseSyncService : InvoiceSyncService<SimplePurchaseInvoiceDto, PurchaseInvoiceStatusChangeDto>
     {
         private eFaktureContext _context;
 
         private readonly ILogger<PurchaseSyncService> logger;
 
-        public PublicPurchaseContractorSyncService(eFaktureContext context, IConfiguration configRoot, IApiInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto> apiInvoiceService, ILogger<PurchaseSyncService> logger) : base(configRoot, apiInvoiceService)
+        public PurchaseSyncService(eFaktureContext context, IConfiguration configRoot, IApiInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto> apiInvoiceService, ILogger<PurchaseSyncService> logger) : base(configRoot, apiInvoiceService)
         {
-            this._context = context;
+            _context = context;
             this.logger = logger;
         }
 
@@ -130,8 +130,8 @@ namespace eFaktureSync.Services
 
                 }
 
-                _context.SaveChanges(); 
-               
+                _context.SaveChanges();
+
             }
 
 

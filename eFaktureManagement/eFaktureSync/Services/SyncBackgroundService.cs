@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using eFaktureModel.Services.Sync;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
@@ -11,6 +12,7 @@ namespace eFaktureSync.Services
         private readonly ILogger<SyncBackgroundService> _logger;
         private readonly IConfiguration _configuration;
         private TimeSpan _interval;
+        private TimeSpan _startDelay;
 
         public SyncBackgroundService(IEnumerable<ISyncService> syncServices, ILogger<SyncBackgroundService> logger, IConfiguration configuration)
         {
@@ -19,11 +21,17 @@ namespace eFaktureSync.Services
             _configuration = configuration;
 
             var minutes = _configuration.GetValue("SyncSettings:IntervalMinutes", 60);
+            var startDelaySeconds = _configuration.GetValue("SyncSettings:StartDelaySeconds", 10);
             _interval = TimeSpan.FromMinutes(minutes);
+            _startDelay = TimeSpan.FromSeconds(startDelaySeconds);
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
+            _logger.LogInformation("[START] Sync service");
+
+            await Task.Delay(_startDelay, stoppingToken);
+
             _logger.LogInformation("[START] Sync service");
 
             while (!stoppingToken.IsCancellationRequested)

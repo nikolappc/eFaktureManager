@@ -1,3 +1,4 @@
+using eFaktureCacheAPI.Services.Sync;
 using eFaktureManagement.ApiServices;
 using eFaktureModel.Api.Config;
 using eFaktureModel.Api.Models.Purchase;
@@ -28,6 +29,8 @@ builder.Services.AddSingleton<EFaktureApiRoot>(settings);
 builder.Services.AddScoped<AApiSalesService, ApiSaleInvoiceService>();
 builder.Services.AddScoped<AApiPurchaseInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto>, ApiPurchaseInvoiceService>();
 
+builder.Services.AddScoped<InvoiceSyncService<SimplePurchaseInvoiceDto, PurchaseInvoiceStatusChangeDto>, PurchaseSyncService>();
+builder.Services.AddScoped<InvoiceSyncService<SimpleSalesInvoiceDto, SalesInvoiceStatusChangeDto>, SalesSyncService>();
 
 var app = builder.Build();
 
