@@ -1,6 +1,7 @@
 ﻿using eFaktureCacheAPI.Services.Sync;
 using eFaktureManagement.ApiServices;
 using eFaktureModel.Api.Models.Sales;
+using eFaktureModel.ApiServices;
 using Microsoft.AspNetCore.Mvc;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -8,13 +9,9 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 [Route("api/sales-sync")]
 public class SalesSyncController : GenericSyncController<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto>   
 {
-    private readonly AApiSalesService _service;
-    private readonly InvoiceSyncService<SimpleSalesInvoiceDto, SalesInvoiceStatusChangeDto> _purchaseSyncService;
 
-    public SalesSyncController(AApiSalesService service, InvoiceSyncService<SimpleSalesInvoiceDto, SalesInvoiceStatusChangeDto> purchaseSyncService): base(service, purchaseSyncService)    
+    public SalesSyncController(IApiInvoiceService<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto> service, InvoiceSyncService<SimpleSalesInvoiceDto, SalesInvoiceStatusChangeDto> purchaseSyncService): base(service, purchaseSyncService)    
     {
-        _service = service;
-        _purchaseSyncService = purchaseSyncService;
     }
 
 }

@@ -32,7 +32,7 @@ namespace eFaktureModel.ApiServices.Util
         public HttpClientBuilder(IConfiguration configRoot)
         {
             this.configRoot = configRoot;
-            this._uriBuilder = new UriBuilder(configRoot[EApiPaths.API_ROOT.ToString()]??"");   
+            this._uriBuilder = new UriBuilder(configRoot[EApiPaths.API_ROOT.ToString()] ?? "");
             _queryParams = new NameValueCollection();
             _httpClient = new HttpClient();
         }
@@ -54,8 +54,8 @@ namespace eFaktureModel.ApiServices.Util
         {
             _uriBuilder.Path = path;
 
-            
-            return this;  
+
+            return this;
         }
         public IHttpClientBuilder<T> AddHttpContentUbl(byte[] data)
         {
@@ -65,7 +65,7 @@ namespace eFaktureModel.ApiServices.Util
             var multipartFormDataContent = new MultipartFormDataContent();
             multipartFormDataContent.Add(fileContent, "ubl", "invoice.xml");
 
-            _httpContent = multipartFormDataContent;    
+            _httpContent = multipartFormDataContent;
 
             return this;
         }
@@ -75,7 +75,7 @@ namespace eFaktureModel.ApiServices.Util
         {
             keyValues.ToList().ForEach(kv => _queryParams[kv.Key] = kv.Value);
 
-            return this;    
+            return this;
         }
 
         public IHttpClientBuilder<T> AddHttpContentBody(object requestBody)
@@ -104,18 +104,35 @@ namespace eFaktureModel.ApiServices.Util
 
         private async Task<HttpClientResponse<T?>> GetHttpResult(HttpResponseMessage response)
         {
+
+
+
             var responseBody = await response.Content.ReadAsStringAsync();
-
-            T? resultingInvoice =
-             JsonSerializer.Deserialize<T?>(responseBody);
-
-            var result = new HttpClientResponse<T?>
+            switch (response.StatusCode)
             {
-                StatusCode = response.StatusCode,
-                Result= resultingInvoice,   
-            };  
 
-            return result;
+                case System.Net.HttpStatusCode.OK:
+
+
+                    T? resultingInvoice =
+                     JsonSerializer.Deserialize<T?>(responseBody);
+
+                    var result = new HttpClientResponse<T?>(response.StatusCode, resultingInvoice);
+
+                    return result;
+
+                case System.Net.HttpStatusCode.NoContent:
+
+                case System.Net.HttpStatusCode.NotModified:
+                case System.Net.HttpStatusCode.NotFound:
+                case System.Net.HttpStatusCode.TooManyRequests:
+                case System.Net.HttpStatusCode.InternalServerError:
+                default:
+                    return new HttpClientResponse<T?>(responseBody, response.StatusCode);
+
+
+            }
+
         }
         public async Task<HttpClientResponse<T?>> DeleteResult()
         {
@@ -144,8 +161,8 @@ namespace eFaktureModel.ApiServices.Util
                     _httpClient.Dispose();
 
                     this._httpContent = null;
-                    this._queryParams = null;   
-                    this._uriBuilder = null;    
+                    this._queryParams = null;
+                    this._uriBuilder = null;
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override finalizer
@@ -172,14 +189,14 @@ namespace eFaktureModel.ApiServices.Util
         {
             var stringContent = new StringContent(data, encoding, "application/xml");
 
-            _httpContent = stringContent;   
+            _httpContent = stringContent;
 
             return this;
         }
 
         public IHttpClientBuilder<T> AddPathParam(long invoiceId)
         {
-            _uriBuilder.Path = Path.Combine(_uriBuilder.Path, invoiceId.ToString());    
+            _uriBuilder.Path = Path.Combine(_uriBuilder.Path, invoiceId.ToString());
 
             return this;
         }
