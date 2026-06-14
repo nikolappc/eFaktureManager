@@ -19,7 +19,7 @@ namespace eFaktureSync.Services
         public PurchaseSyncService(SyncApiRoot syncApiRoot) :base() 
         {
 
-            PathsConfiguration = (SyncApiOptions)syncApiRoot.ApiPaths[eFaktureModel.Enums.EApiSections.PURCHASE];
+            PathsConfiguration = syncApiRoot.ApiPaths[eFaktureModel.Enums.EApiSections.PURCHASE];
         }
     }
 }

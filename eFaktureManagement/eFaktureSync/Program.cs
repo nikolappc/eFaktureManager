@@ -43,11 +43,11 @@ var host = Host.CreateDefaultBuilder(args)
             context.Configuration.GetConnectionString("eFaktureConnection")));
 
 
-        var apiroot = new EFaktureApiRoot();
+        var apiroot = new SyncApiRoot();
 
         context.Configuration.GetSection("ApiConfig").Bind(apiroot);    
 
-        serviceCollection.AddSingleton<EFaktureApiRoot>(apiroot);
+        serviceCollection.AddSingleton<SyncApiRoot>(apiroot);
 
         serviceCollection.AddScoped<ISyncService, PurchaseSyncService>();
         serviceCollection.AddScoped<ISyncService, SalesSyncService>();

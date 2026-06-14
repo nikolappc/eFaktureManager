@@ -45,6 +45,7 @@ namespace eFaktureSync.Services
                     }
                     catch (Exception? ex)
                     {
+                        
                         _logger.LogError(ex, $"[ERROR] Syncing with {service.GetType().Name} service.");
 
                         while (ex != null)

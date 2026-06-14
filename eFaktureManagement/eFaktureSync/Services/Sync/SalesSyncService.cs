@@ -19,7 +19,7 @@ namespace eFaktureSync.Services
         public SalesSyncService(SyncApiRoot syncApiRoot) :base() 
         {
 
-            PathsConfiguration = (SyncApiOptions)syncApiRoot.ApiPaths[eFaktureModel.Enums.EApiSections.SALES];
+            PathsConfiguration = syncApiRoot.ApiPaths[eFaktureModel.Enums.EApiSections.SALES];
         }
     }
 }

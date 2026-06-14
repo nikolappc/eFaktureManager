@@ -1,10 +1,12 @@
 using eFaktureCacheAPI.Services.Sync;
 using eFaktureManagement.ApiServices;
+using eFaktureManagement.Data;
 using eFaktureModel.Api.Config;
 using eFaktureModel.Api.Models.Purchase;
 using eFaktureModel.Api.Models.Sales;
 using eFaktureModel.ApiServices;
 using eFaktureModel.Enums;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
@@ -18,16 +20,21 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var config = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json", false)
-.AddEnvironmentVariables()
-.Build();
+    .AddJsonFile("appsettings.json", false)
+    .AddEnvironmentVariables()
+    .Build();
 
 var settings = config.GetSection("ApiConfig").Get<EFaktureApiRoot>();
 
+
+builder.Services.AddDbContext<eFaktureContext>(options =>
+    options.UseSqlServer(config.GetConnectionString("eFaktureConnection")));
+
+
 builder.Services.AddSingleton<EFaktureApiRoot>(settings);
 
-builder.Services.AddScoped<AApiSalesService, ApiSaleInvoiceService>();
-builder.Services.AddScoped<AApiPurchaseInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto>, ApiPurchaseInvoiceService>();
+builder.Services.AddScoped<IApiInvoiceService<SalesInvoiceStatusChangeDto, SimpleSalesInvoiceDto>, ApiSaleInvoiceService>();
+builder.Services.AddScoped<IApiInvoiceService<PurchaseInvoiceStatusChangeDto, SimplePurchaseInvoiceDto>, ApiPurchaseInvoiceService>();
 
 builder.Services.AddScoped<InvoiceSyncService<SimplePurchaseInvoiceDto, PurchaseInvoiceStatusChangeDto>, PurchaseSyncService>();
 builder.Services.AddScoped<InvoiceSyncService<SimpleSalesInvoiceDto, SalesInvoiceStatusChangeDto>, SalesSyncService>();

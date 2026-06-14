@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 using System.Net.Mime;
 using System.Text;
 using System.Text.Json;
@@ -79,8 +80,7 @@ namespace eFaktureModel.ApiServices.Util
 
         public IHttpClientBuilder<T> AddHttpContentBody(object requestBody)
         {
-            var requestData = JsonSerializer.Serialize(requestBody);
-            _httpContent = new StringContent(requestData, System.Text.Encoding.UTF8, MediaTypeNames.Application.FormUrlEncoded);
+            _httpContent = JsonContent.Create(requestBody);
 
             return this;
         }

@@ -16,7 +16,7 @@ public class GenericSyncController<C, I> : ControllerBase
     }
 
     [HttpPost("sync")]
-    protected async Task<IActionResult> Sync([FromBody]SyncChangesDto dto)
+    public async Task<IActionResult> Sync([FromBody]SyncChangesDto dto)
     {
         try
         {

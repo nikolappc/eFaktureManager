@@ -1,4 +1,5 @@
-﻿using eFaktureModel.Api.Models;
+﻿using eFaktureModel.Api.Config;
+using eFaktureModel.Api.Models;
 using eFaktureModel.ApiModels.Sale;
 using eFaktureModel.ApiServices;
 using eFaktureModel.ApiServices.Util;
@@ -27,7 +28,7 @@ namespace eFaktureSync.Services
             PathsConfiguration = pathsConfiguration;
         }
 
-        protected SyncApiOptions PathsConfiguration { get; set; }
+        protected GenericEFaktureApiOptions<ESyncPaths> PathsConfiguration { get; set; }
 
         public void Sync()
         {
