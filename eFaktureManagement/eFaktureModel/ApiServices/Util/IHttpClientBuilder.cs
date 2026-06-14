@@ -21,6 +21,7 @@ namespace eFaktureModel.ApiServices.Util
 
         IHttpClientBuilder<T> AddQueryItem(string name, string item);
         IHttpClientBuilder<T> AddPath(string path);
+        IHttpClientBuilder<T> AddHeader(string name, string value);
         IHttpClientBuilder<T> AddHttpContentUbl(byte[] data);
         IHttpClientBuilder<T> AddHttpContentText(string data, Encoding encoding);
 

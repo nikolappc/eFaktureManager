@@ -70,6 +70,12 @@ namespace eFaktureModel.ApiServices.Util
             return this;
         }
 
+        public IHttpClientBuilder<T> AddHeader(string name, string value)
+        {
+            _httpClient.DefaultRequestHeaders.Add(name, value);
+
+            return this;
+        }
 
         public IHttpClientBuilder<T> AddQueryParams(Dictionary<string, string?> keyValues)
         {
