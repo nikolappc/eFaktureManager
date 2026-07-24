@@ -120,10 +120,10 @@ namespace eFaktureModel.ApiServices.Util
                 case System.Net.HttpStatusCode.OK:
 
 
-                    T? resultingInvoice =
+                    T? resultingObject =
                      JsonSerializer.Deserialize<T?>(responseBody);
 
-                    var result = new HttpClientResponse<T?>(response.StatusCode, resultingInvoice);
+                    var result = new HttpClientResponse<T?>(response.StatusCode, resultingObject);
 
                     return result;
 

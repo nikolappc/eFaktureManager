@@ -11,6 +11,8 @@ using AspNetCore.SecurityKey;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using Newtonsoft.Json.Converters;
+using CommonLib;
+using eFaktureApiDemo.Middleware;
 
 namespace IO.Swagger
 {
@@ -70,13 +72,47 @@ namespace IO.Swagger
 
             // Services
             builder.Services.AddScoped<PurchaseRandomService, PurchaseRandomService>();
+            builder.Services.AddAuthentication(ApiKeyOptions.DefaultScheme)
+                .AddScheme<ApiKeyOptions, DemoAPIAuthHandler>(ApiKeyOptions.DefaultScheme, options =>
+                {
+                });
 
-            builder.Services.AddSecurityKey(options =>
+            builder.Services.AddAuthorization(options =>
             {
-                options.HeaderName = "apikey";
-                options.QueryName = "ApiKey";
+                options.AddPolicy("ApiKeyPolicy", policy =>
+                {
+                    policy.RequireAuthenticatedUser();
+                    policy.Requirements.Add(new ApiKeyAuthorizationRequirement());
+                });
             });
 
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen(options =>
+            {
+                options.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme
+                {
+                    In = ParameterLocation.Header,
+                    Name = "X-API-Key",
+                    Type = SecuritySchemeType.ApiKey,
+                    Description = "Enter your API key"
+                });
+
+                options.AddSecurityRequirement(new OpenApiSecurityRequirement
+            {
+                {
+                    new OpenApiSecurityScheme
+                    {
+                        Reference = new OpenApiReference
+                        {
+                            Type = ReferenceType.SecurityScheme,
+                            Id = "ApiKey"
+                        }
+                    },
+                    Array.Empty<string>()
+                }
+            });
+
+            });
 
             var app = builder.Build();
 
@@ -121,7 +157,8 @@ namespace IO.Swagger
             }
             app.Run();
 
-        }
 
+        }
     }
+
 }
