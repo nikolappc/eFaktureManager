@@ -50,7 +50,7 @@ var host = Host.CreateDefaultBuilder(args)
         serviceCollection.AddSingleton<SyncApiRoot>(apiroot);
 
         serviceCollection.AddScoped<ISyncService, PurchaseSyncService>();
-        serviceCollection.AddScoped<ISyncService, SalesSyncService>();
+        //serviceCollection.AddScoped<ISyncService, SalesSyncService>();
         serviceCollection.AddHostedService<SyncBackgroundService>();
 
     })

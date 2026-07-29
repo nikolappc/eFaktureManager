@@ -45,7 +45,7 @@ namespace eFaktureManagement.ApiServices
         {
             var path = PathsConfiguration.Endpoints[EApiPaths.CHANGES];
             var root = PathsConfiguration.BaseUrl;
-            var apiKey = configRoot.GetSection("API_KEY")?.Value??null;
+            var apiKey = configRoot.GetSection(EFaktureConstants.apiKeyConfigName)?.Value??null;
             if (string.IsNullOrWhiteSpace(apiKey))
             {
                 throw new Exception("Api key not provided.");
@@ -64,7 +64,7 @@ namespace eFaktureManagement.ApiServices
             {
                 var request = new SaleChangeRequest { date = date };
             
-                httpClient.AddHttpContentBody(request).AddHeader("apikey", apiKey).AddPath(path);
+                httpClient.AddHttpContentBody(request).AddHeader(EFaktureConstants.apiKeyHeaderName, apiKey).AddPath(path);
                 List<C>? list = (await httpClient.PostResult()).Result;
 
                 return list ?? new();

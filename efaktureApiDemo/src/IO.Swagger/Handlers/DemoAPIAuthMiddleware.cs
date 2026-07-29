@@ -16,7 +16,7 @@ namespace eFaktureApiDemo.Middleware
 
         protected override string GetAPIKeyName()
         {
-            return "MAIN_API_KEY";
+            return "EFAKTURE_API_KEY";
         }
     }
 }
