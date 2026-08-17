@@ -11,13 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureSync", "eFaktureSyn
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureModel", "eFaktureModel\eFaktureModel.csproj", "{EC2751F4-365D-4F98-B412-D80077653C30}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureManagementBase", "eFaktureManagementBase\eFaktureManagementBase.csproj", "{3DE4A096-A246-498F-A194-53749EEBAC0D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureFileArchive", "eFaktureFileArchive\eFaktureFileArchive.csproj", "{60FC2541-EF6D-4D0A-8577-6CE788501BB7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "eFaktureCacheAPI", "eFaktureCacheAPI\eFaktureCacheAPI.csproj", "{B8E2C5D7-8E22-4094-933B-F7D228B09DFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLib", "CommonLib\CommonLib.csproj", "{44616725-955F-4B0C-A526-41F192BBA428}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CommonLib", "CommonLib\CommonLib.csproj", "{44616725-955F-4B0C-A526-41F192BBA428}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +39,6 @@ Global
 		{EC2751F4-365D-4F98-B412-D80077653C30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC2751F4-365D-4F98-B412-D80077653C30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC2751F4-365D-4F98-B412-D80077653C30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3DE4A096-A246-498F-A194-53749EEBAC0D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{60FC2541-EF6D-4D0A-8577-6CE788501BB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{60FC2541-EF6D-4D0A-8577-6CE788501BB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{60FC2541-EF6D-4D0A-8577-6CE788501BB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
