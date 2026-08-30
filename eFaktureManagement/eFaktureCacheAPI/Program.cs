@@ -28,7 +28,7 @@ var settings = config.GetSection("ApiConfig").Get<EFaktureApiRoot>();
 
 
 builder.Services.AddDbContext<eFaktureContext>(options =>
-    options.UseSqlServer(config.GetConnectionString("eFaktureConnection")));
+    options.UseNpgsql(config.GetConnectionString("eFaktureConnection")));
 
 
 builder.Services.AddSingleton<EFaktureApiRoot>(settings);

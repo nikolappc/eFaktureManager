@@ -39,7 +39,7 @@ var host = Host.CreateDefaultBuilder(args)
 
        
         serviceCollection.AddDbContext<eFaktureContext>(options =>
-            options.UseSqlServer(
+            options.UseNpgsql(
             context.Configuration.GetConnectionString("eFaktureConnection")));
 
 

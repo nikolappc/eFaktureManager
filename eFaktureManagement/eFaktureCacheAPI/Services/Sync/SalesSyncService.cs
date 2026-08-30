@@ -3,6 +3,7 @@ using eFaktureManagement.Data;
 using eFaktureModel.Api.Models.Sales;
 using eFaktureModel.ApiServices;
 using eFaktureModel.Model.Sales;
+using eFaktureModel.Model.Sync;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -55,6 +56,13 @@ namespace eFaktureCacheAPI.Services.Sync
 
             };
             _context.SaveChanges();
+        }
+
+        protected override AInvoiceChangeRecord GetChangeRecord(SalesInvoiceStatusChangeDto? change)
+        {
+            var record = _context.SalesInvoiceRecordChanges.Where(e => e.Id == change.EventId).FirstOrDefault();
+
+            return record;
         }
     }
 }

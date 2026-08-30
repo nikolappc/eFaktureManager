@@ -1,5 +1,4 @@
-﻿using Azure;
-using eFaktureManagement.Dto.Identity;
+﻿using eFaktureManagement.Dto.Identity;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

@@ -3,6 +3,7 @@ using eFaktureManagement.Data;
 using eFaktureModel.Api.Models.Purchase;
 using eFaktureModel.ApiServices;
 using eFaktureModel.Model.Purchase;
+using eFaktureModel.Model.Sync;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using System;
@@ -136,6 +137,13 @@ namespace eFaktureCacheAPI.Services.Sync
 
 
 
+        }
+
+        protected override AInvoiceChangeRecord GetChangeRecord(PurchaseInvoiceStatusChangeDto? change)
+        {
+            var record = _context.PublicPurchaseContractorRecordChanges.Where(e => e.Id == change.EventId).FirstOrDefault();
+
+            return record;
         }
     }
 }

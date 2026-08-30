@@ -2,6 +2,7 @@
 using eFaktureModel.Model.Purchase;
 using eFaktureModel.Model.Reference;
 using eFaktureModel.Model.Sales;
+using eFaktureModel.Model.Sync;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
@@ -14,6 +15,9 @@ namespace eFaktureManagement.Data
         {
         }
 
+        public DbSet<PublicPurchaseContractorRecordChange> PublicPurchaseContractorRecordChanges { get; set; }
+        public DbSet<PurchaseInvoiceRecordChange> PurchaseInvoiceRecordChanges { get; set; }
+        public DbSet<SalesInvoiceRecordChange> SalesInvoiceRecordChanges { get; set; }
         public DbSet<RegisteredCompany> RegisteredCompanies { get; set; }
 
         public DbSet<UserInvoice> UserInvoices { get; set; }
