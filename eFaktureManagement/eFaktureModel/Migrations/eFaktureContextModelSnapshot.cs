@@ -17,7 +17,7 @@ namespace eFaktureModel.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.6")
+                .HasAnnotation("ProductVersion", "9.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -165,12 +165,10 @@ namespace eFaktureModel.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderKey")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("ProviderDisplayName")
                         .HasColumnType("text");
@@ -207,12 +205,10 @@ namespace eFaktureModel.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LoginProvider")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Name")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)");
+                        .HasColumnType("text");
 
                     b.Property<string>("Value")
                         .HasColumnType("text");
@@ -220,6 +216,50 @@ namespace eFaktureModel.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Company.RegisteredCompany", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BugetCompanyNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("CountryId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime?>("DeletionDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool?>("IsPrivateCompany")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("RegistrationCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime?>("RegistrationDate")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("VatRegistrationCode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("eFaktureCompanyId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RegisteredCompanies");
                 });
 
             modelBuilder.Entity("eFaktureModel.Model.Purchase.PurchaseInvoice", b =>
@@ -271,13 +311,35 @@ namespace eFaktureModel.Migrations
                     b.ToTable("PurchaseInvoice");
                 });
 
-            modelBuilder.Entity("eFaktureModel.Model.Purchase.PurchaseInvoiceChange", b =>
+            modelBuilder.Entity("eFaktureModel.Model.Purchase.PurchaseInvoiceAttachment", b =>
                 {
-                    b.Property<int?>("EventId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("EventId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("InvoiceId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.ToTable("PurchaseInvoiceAttachments");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Purchase.PurchaseInvoiceChange", b =>
+                {
+                    b.Property<int>("EventId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EventId"));
 
                     b.Property<int>("CirAssignmentChange")
                         .HasColumnType("integer");
@@ -317,6 +379,28 @@ namespace eFaktureModel.Migrations
                     b.ToTable("PurchaseInvoiceChange");
                 });
 
+            modelBuilder.Entity("eFaktureModel.Model.Purchase.SalesInvoiceAttachment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("FileName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<long>("InvoiceId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("InvoiceId");
+
+                    b.ToTable("SalesInvoiceAttachments");
+                });
+
             modelBuilder.Entity("eFaktureModel.Model.Reference.UserInvoice", b =>
                 {
                     b.Property<int>("Id")
@@ -334,10 +418,13 @@ namespace eFaktureModel.Migrations
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("integer");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserInvoices");
                 });
@@ -393,11 +480,11 @@ namespace eFaktureModel.Migrations
 
             modelBuilder.Entity("eFaktureModel.Model.Sales.SalesInvoiceChange", b =>
                 {
-                    b.Property<int?>("EventId")
+                    b.Property<int>("EventId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int?>("EventId"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("EventId"));
 
                     b.Property<int>("CirAssignmentChange")
                         .HasColumnType("integer");
@@ -435,6 +522,72 @@ namespace eFaktureModel.Migrations
                     b.HasIndex("SalesInvoiceId");
 
                     b.ToTable("SalesInvoiceChange");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Sync.PublicPurchaseContractorRecordChange", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RecordStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("RecordedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("SyncType")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PublicPurchaseContractorRecordChanges");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Sync.PurchaseInvoiceRecordChange", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RecordStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("RecordedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("SyncType")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PurchaseInvoiceRecordChanges");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Sync.SalesInvoiceRecordChange", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RecordStatus")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("RecordedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("SyncType")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SalesInvoiceRecordChanges");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -488,6 +641,17 @@ namespace eFaktureModel.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("eFaktureModel.Model.Purchase.PurchaseInvoiceAttachment", b =>
+                {
+                    b.HasOne("eFaktureModel.Model.Purchase.PurchaseInvoice", "Invoice")
+                        .WithMany()
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Invoice");
+                });
+
             modelBuilder.Entity("eFaktureModel.Model.Purchase.PurchaseInvoiceChange", b =>
                 {
                     b.HasOne("eFaktureModel.Model.Purchase.PurchaseInvoice", "PurchaseInvoice")
@@ -497,6 +661,28 @@ namespace eFaktureModel.Migrations
                         .IsRequired();
 
                     b.Navigation("PurchaseInvoice");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Purchase.SalesInvoiceAttachment", b =>
+                {
+                    b.HasOne("eFaktureModel.Model.Sales.SalesInvoice", "Invoice")
+                        .WithMany()
+                        .HasForeignKey("InvoiceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Invoice");
+                });
+
+            modelBuilder.Entity("eFaktureModel.Model.Reference.UserInvoice", b =>
+                {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("eFaktureModel.Model.Sales.SalesInvoiceChange", b =>
