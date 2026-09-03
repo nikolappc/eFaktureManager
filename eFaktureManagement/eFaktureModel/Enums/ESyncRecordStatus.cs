@@ -8,6 +8,6 @@ namespace eFaktureModel.Enums
 {
     public enum ESyncRecordStatus
     {
-        CHECKED, APPLIED
+        CHECKED, APPLIED, SKIPPED, ERROR
     }
 }

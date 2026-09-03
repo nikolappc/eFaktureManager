@@ -139,7 +139,7 @@ namespace eFaktureCacheAPI.Services.Sync
 
         }
 
-        protected override AInvoiceChangeRecord GetChangeRecord(PurchaseInvoiceStatusChangeDto? change)
+        protected override AInvoiceChangeRecord<PurchaseInvoiceStatusChangeDto, int> GetChangeRecord(PurchaseInvoiceStatusChangeDto? change)
         {
             var record = _context.PublicPurchaseContractorRecordChanges.Where(e => e.Id == change.EventId).FirstOrDefault();
 

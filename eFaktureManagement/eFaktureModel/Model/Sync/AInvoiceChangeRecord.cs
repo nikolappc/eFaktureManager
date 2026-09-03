@@ -1,14 +1,10 @@
 ﻿using eFaktureModel.Enums;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace eFaktureModel.Model.Sync
 {
-    public abstract class AInvoiceChangeRecord
+    public abstract class AInvoiceChangeRecord<T, K>
     {
         [Key]
         public int Id { get; set; }
@@ -17,6 +13,10 @@ namespace eFaktureModel.Model.Sync
 
         public DateTime RecordedOn { get; set; }
 
+        public K ChangeId { get; set; } 
+
+        [ForeignKey(nameof(ChangeId))]
+        public T? Change { get; set; }  
 
     }
 }

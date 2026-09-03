@@ -1,4 +1,6 @@
-﻿using eFaktureModel.Model.Company;
+﻿using eFaktureModel.Api.Models.Purchase;
+using eFaktureModel.Api.Models.Sales;
+using eFaktureModel.Model.Company;
 using eFaktureModel.Model.Purchase;
 using eFaktureModel.Model.Reference;
 using eFaktureModel.Model.Sales;
@@ -13,7 +15,20 @@ namespace eFaktureManagement.Data
     {
         public eFaktureContext(DbContextOptions<eFaktureContext> options) : base(options)
         {
+
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<PurchaseInvoiceStatusChangeDto>()
+                .HasKey(p => p.EventId);
+            modelBuilder.Entity<SalesInvoiceStatusChangeDto>()
+                .HasKey(p => p.EventId);
+        }
+
+        public DbSet<PurchaseInvoiceStatusChangeDto> PurchaseInvoiceStatusChangeDtos { get; set; }
+        public DbSet<SalesInvoiceStatusChangeDto> SalesInvoiceStatusChangeDtos { get; set; }
+
 
         public DbSet<PublicPurchaseContractorRecordChange> PublicPurchaseContractorRecordChanges { get; set; }
         public DbSet<PurchaseInvoiceRecordChange> PurchaseInvoiceRecordChanges { get; set; }
